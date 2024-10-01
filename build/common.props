@@ -44,6 +44,7 @@
   <PropertyGroup>
     <NoWarn>$(NoWarn);SYSLIB0050</NoWarn>
     <NoWarn>$(NoWarn);SYSLIB0051</NoWarn>
+    <NoWarn>$(NoWarn);RS0016;RS0017;RS0051</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>
@@ -77,5 +78,5 @@
   <PropertyGroup Condition="$([MSBuild]::IsTargetFrameworkCompatible('$(TargetFramework)', 'net8.0'))">
     <IsAotCompatible>true</IsAotCompatible>
   </PropertyGroup>
-  
+
 </Project>
