@@ -189,13 +189,16 @@ namespace Microsoft.IdentityModel.Tokens.Tests
                 context.AddDiff("The key value pair {1, 'one'} should have been added to the cache, but the Contains() method returned false.");
 
             // The LRU item should be removed, allowing this value to be added even though the cache is full.
-            cache.SetValue(2, "two");
-            if (!cache.Contains(2))
-                context.AddDiff("The key value pair {2, 'two'} should have been added to the cache, but the Contains() method returned false.");
+            bool wasAdded = cache.SetValue(2, "two", DateTime.MaxValue);
+            if (wasAdded)
+                context.AddDiff("The key value pair {2, 'two'} should NOT have been added to the cache as it was full.");
+
+            if (cache.Contains(2))
+                context.AddDiff("The key value pair {2, 'two'} should NOT have been added to the cache as it was full");
 
             try
             {
-                cache.SetValue(null, "three");
+                cache.SetValue(null, "three", DateTime.MaxValue);
                 context.AddDiff("The first parameter passed into the SetValue() method was null, but no exception was thrown.");
             }
             catch (Exception ex)
