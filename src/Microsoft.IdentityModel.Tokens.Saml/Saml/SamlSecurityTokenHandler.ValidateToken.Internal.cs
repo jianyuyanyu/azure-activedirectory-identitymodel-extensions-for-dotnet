@@ -202,17 +202,32 @@ namespace Microsoft.IdentityModel.Tokens.Saml
                     StackFrames.AssertionConditionsNull);
             }
 
-            var lifetimeValidationResult = validationParameters.LifetimeValidator(
-                samlToken.Assertion.Conditions.NotBefore,
-                samlToken.Assertion.Conditions.NotOnOrAfter,
-                samlToken,
-                validationParameters,
-                callContext);
+            ValidationResult<ValidatedLifetime> lifetimeValidationResult;
 
-            if (!lifetimeValidationResult.IsValid)
+            try
             {
-                StackFrames.LifetimeValidationFailed ??= new StackFrame(true);
-                return lifetimeValidationResult.UnwrapError().AddStackFrame(StackFrames.LifetimeValidationFailed);
+                lifetimeValidationResult = validationParameters.LifetimeValidator(
+                    samlToken.Assertion.Conditions.NotBefore,
+                    samlToken.Assertion.Conditions.NotOnOrAfter,
+                    samlToken,
+                    validationParameters,
+                    callContext);
+
+                if (!lifetimeValidationResult.IsValid)
+                    return lifetimeValidationResult.UnwrapError().AddCurrentStackFrame();
+            }
+#pragma warning disable CA1031 // Do not catch general exception types
+            catch (Exception ex)
+#pragma warning restore CA1031 // Do not catch general exception types
+            {
+                return new LifetimeValidationError(
+                    new MessageDetail(Tokens.LogMessages.IDX10271),
+                    ValidationFailureType.LifetimeValidatorThrew,
+                    typeof(SecurityTokenInvalidLifetimeException),
+                    ValidationError.GetCurrentStackFrame(),
+                    samlToken.Assertion.Conditions.NotBefore,
+                    samlToken.Assertion.Conditions.NotOnOrAfter,
+                    ex);
             }
 
             string? validatedAudience = null;
@@ -221,18 +236,34 @@ namespace Microsoft.IdentityModel.Tokens.Saml
 
                 if (condition is SamlAudienceRestrictionCondition audienceRestriction)
                 {
-
                     // AudienceRestriction.Audiences is an ICollection<Uri> so we need make a conversion to List<string> before calling our audience validator 
                     var audiencesAsList = audienceRestriction.Audiences.Select(static x => x.OriginalString).ToList();
+                    ValidationResult<string> audienceValidationResult;
 
-                    var audienceValidationResult = validationParameters.AudienceValidator(
-                        audiencesAsList,
-                        samlToken,
-                        validationParameters,
-                        callContext);
+                    try
+                    {
+                        audienceValidationResult = validationParameters.AudienceValidator(
+                            audiencesAsList,
+                            samlToken,
+                            validationParameters,
+                            callContext);
 
-                    if (!audienceValidationResult.IsValid)
-                        return audienceValidationResult.UnwrapError();
+                        if (!audienceValidationResult.IsValid)
+                            return audienceValidationResult.UnwrapError().AddCurrentStackFrame();
+                    }
+#pragma warning disable CA1031 // Do not catch general exception types
+                    catch (Exception ex)
+#pragma warning restore CA1031 // Do not catch general exception types
+                    {
+                        return new AudienceValidationError(
+                            new MessageDetail(Tokens.LogMessages.IDX10270),
+                            ValidationFailureType.AudienceValidatorThrew,
+                            typeof(SecurityTokenInvalidAudienceException),
+                            ValidationError.GetCurrentStackFrame(),
+                            audiencesAsList,
+                            validationParameters.ValidAudiences,
+                            ex);
+                    }
 
                     validatedAudience = audienceValidationResult.UnwrapResult();
                 }
