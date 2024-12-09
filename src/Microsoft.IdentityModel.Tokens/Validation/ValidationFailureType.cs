@@ -135,6 +135,11 @@ namespace Microsoft.IdentityModel.Tokens
         public static readonly ValidationFailureType AlgorithmValidatorThrew = new AlgorithmValidationFailure("AlgorithmValidatorThrew");
 
         /// <summary>
+        /// Defines a type that represents the fact that the audience validation delegate threw an exception.
+        /// </summary>
+        public static readonly ValidationFailureType AudienceValidatorThrew = new AudienceValidationFailure("AudienceValidatorThrew");
+
+        /// <summary>
         /// Defines a type that represents the fact that the issuer validation delegate threw an exception.
         /// </summary>
         public static readonly ValidationFailureType IssuerValidatorThrew = new IssuerValidatorFailure("IssuerValidatorThrew");
