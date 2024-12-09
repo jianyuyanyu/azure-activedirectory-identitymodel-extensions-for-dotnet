@@ -16,10 +16,10 @@ namespace Microsoft.IdentityModel.Tokens.Saml
     {
         internal override ClaimsIdentity CreateClaimsIdentityInternal(SecurityToken securityToken, ValidationParameters validationParameters, string issuer)
         {
-            return CreateClaimsIdentity(securityToken as SamlSecurityToken, validationParameters, issuer);
+            return CreateClaimsIdentity((SamlSecurityToken)securityToken, validationParameters, issuer);
         }
 
-        internal ClaimsIdentity CreateClaimsIdentity(SamlSecurityToken? samlToken, ValidationParameters validationParameters, string issuer)
+        internal ClaimsIdentity CreateClaimsIdentity(SamlSecurityToken samlToken, ValidationParameters validationParameters, string issuer)
         {
             if (samlToken == null)
                 throw LogHelper.LogArgumentNullException(nameof(samlToken));

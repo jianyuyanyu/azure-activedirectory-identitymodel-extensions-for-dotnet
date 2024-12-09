@@ -8,16 +8,16 @@ using Microsoft.IdentityModel.Logging;
 namespace Microsoft.IdentityModel.Tokens.Saml2
 {
     /// <summary>
-    /// A <see cref="SecurityTokenHandler"/> designed for creating and validating Saml Tokens. See: http://docs.oasis-open.org/security/saml/v2.0/saml-core-2.0-os.pdf
+    /// A <see cref="SecurityTokenHandler"/> designed for creating and validating Saml2 Tokens. See: http://docs.oasis-open.org/security/saml/v2.0/saml-core-2.0-os.pdf
     /// </summary>
     public partial class Saml2SecurityTokenHandler : SecurityTokenHandler
     {
         internal override ClaimsIdentity CreateClaimsIdentityInternal(SecurityToken securityToken, ValidationParameters validationParameters, string issuer)
         {
-            return CreateClaimsIdentity(securityToken as Saml2SecurityToken, validationParameters, issuer);
+            return CreateClaimsIdentity((Saml2SecurityToken)securityToken, validationParameters, issuer);
         }
 
-        internal ClaimsIdentity CreateClaimsIdentity(Saml2SecurityToken? samlToken, ValidationParameters validationParameters, string issuer)
+        internal ClaimsIdentity CreateClaimsIdentity(Saml2SecurityToken samlToken, ValidationParameters validationParameters, string issuer)
         {
             if (samlToken == null)
                 throw LogHelper.LogArgumentNullException(nameof(samlToken));
