@@ -235,7 +235,6 @@ namespace Microsoft.IdentityModel.Tokens
                     validatedSigningKeyId,
                     actorWasValidated,
                     null);
-
         }
         #endregion
     }
