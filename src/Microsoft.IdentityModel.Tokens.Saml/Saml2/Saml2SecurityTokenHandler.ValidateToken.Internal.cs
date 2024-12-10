@@ -3,7 +3,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.IdentityModel.Tokens.Saml;
@@ -43,10 +42,9 @@ namespace Microsoft.IdentityModel.Tokens.Saml2
         {
             if (securityToken is null)
             {
-                StackFrames.TokenNull ??= new StackFrame(true);
                 return ValidationError.NullParameter(
                     nameof(securityToken),
-                    StackFrames.TokenNull);
+                    ValidationError.GetCurrentStackFrame());
             }
 
             if (securityToken is not Saml2SecurityToken samlToken)
@@ -64,10 +62,9 @@ namespace Microsoft.IdentityModel.Tokens.Saml2
 
             if (validationParameters is null)
             {
-                StackFrames.TokenValidationParametersNull ??= new StackFrame(true);
                 return ValidationError.NullParameter(
                     nameof(validationParameters),
-                    StackFrames.TokenValidationParametersNull);
+                    ValidationError.GetCurrentStackFrame());
             }
 
             validationParameters = await SamlTokenUtilities.PopulateValidationParametersWithCurrentConfigurationAsync(validationParameters, cancellationToken).ConfigureAwait(false);
@@ -138,10 +135,7 @@ namespace Microsoft.IdentityModel.Tokens.Saml2
 
             var signatureValidationResult = ValidateSignature(samlToken, validationParameters, callContext);
             if (!signatureValidationResult.IsValid)
-            {
-                StackFrames.SignatureValidationFailed ??= new StackFrame(true);
-                return signatureValidationResult.UnwrapError().AddStackFrame(StackFrames.SignatureValidationFailed);
-            }
+                return signatureValidationResult.UnwrapError().AddCurrentStackFrame();
 
             ValidationResult<ValidatedSigningKeyLifetime> issuerSigningKeyValidationResult;
 
@@ -191,18 +185,16 @@ namespace Microsoft.IdentityModel.Tokens.Saml2
         {
             if (samlToken.Assertion is null)
             {
-                StackFrames.AssertionNull ??= new StackFrame(true);
                 return ValidationError.NullParameter(
                     nameof(samlToken.Assertion),
-                    StackFrames.AssertionNull);
+                    ValidationError.GetCurrentStackFrame());
             }
 
             if (samlToken.Assertion.Conditions is null)
             {
-                StackFrames.AssertionConditionsNull ??= new StackFrame(true);
                 return ValidationError.NullParameter(
                     nameof(samlToken.Assertion.Conditions),
-                    StackFrames.AssertionConditionsNull);
+                    ValidationError.GetCurrentStackFrame());
             }
 
             ValidationResult<ValidatedLifetime> lifetimeValidationResult;

@@ -66,19 +66,19 @@ namespace Microsoft.IdentityModel.Tokens
                     new MessageDetail(LogMessages.IDX10211),
                     ValidationFailureType.IssuerValidationFailed,
                     typeof(SecurityTokenInvalidIssuerException),
-                    new StackFrame(true),
+                    ValidationError.GetCurrentStackFrame(),
                     issuer);
             }
 
             if (validationParameters == null)
                 return ValidationError.NullParameter(
                     nameof(validationParameters),
-                    new StackFrame(true));
+                    ValidationError.GetCurrentStackFrame());
 
             if (securityToken == null)
                 return ValidationError.NullParameter(
                     nameof(securityToken),
-                    new StackFrame(true));
+                    ValidationError.GetCurrentStackFrame());
 
             BaseConfiguration? configuration = null;
             if (validationParameters.ConfigurationManager != null)
@@ -90,7 +90,7 @@ namespace Microsoft.IdentityModel.Tokens
                     new MessageDetail(LogMessages.IDX10211),
                     ValidationFailureType.IssuerValidationFailed,
                     typeof(SecurityTokenInvalidIssuerException),
-                    new StackFrame(true),
+                    ValidationError.GetCurrentStackFrame(),
                     issuer);
 
             if (configuration != null)
@@ -141,7 +141,7 @@ namespace Microsoft.IdentityModel.Tokens
                     LogHelper.MarkAsNonPII(configuration?.Issuer)),
                 ValidationFailureType.IssuerValidationFailed,
                 typeof(SecurityTokenInvalidIssuerException),
-                new StackFrame(true),
+                ValidationError.GetCurrentStackFrame(),
                 issuer);
         }
     }

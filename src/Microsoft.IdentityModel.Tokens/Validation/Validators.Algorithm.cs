@@ -2,7 +2,6 @@
 // Licensed under the MIT License.
 
 using System;
-using System.Diagnostics;
 using System.Linq;
 using Microsoft.IdentityModel.Logging;
 
@@ -48,7 +47,7 @@ namespace Microsoft.IdentityModel.Tokens
             if (validationParameters == null)
                 return ValidationError.NullParameter(
                     nameof(validationParameters),
-                    new StackFrame(true));
+                    ValidationError.GetCurrentStackFrame());
 
             if (validationParameters.ValidAlgorithms != null &&
                 validationParameters.ValidAlgorithms.Count > 0 &&
@@ -59,7 +58,7 @@ namespace Microsoft.IdentityModel.Tokens
                         LogHelper.MarkAsNonPII(algorithm)),
                     ValidationFailureType.AlgorithmValidationFailed,
                     typeof(SecurityTokenInvalidAlgorithmException),
-                    new StackFrame(true),
+                    ValidationError.GetCurrentStackFrame(),
                     algorithm);
 
             return algorithm;
