@@ -7,8 +7,6 @@ using Microsoft.IdentityModel.Logging;
 #nullable enable
 namespace Microsoft.IdentityModel.Tokens
 {
-    internal record struct ValidatedLifetime(DateTime? NotBefore, DateTime? Expires);
-
     /// <summary>
     /// Definition for delegate that will validate the lifetime of a <see cref="SecurityToken"/>.
     /// </summary>

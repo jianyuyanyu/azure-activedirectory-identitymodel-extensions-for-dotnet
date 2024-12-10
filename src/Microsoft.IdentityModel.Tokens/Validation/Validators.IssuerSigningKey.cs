@@ -8,8 +8,6 @@ using Microsoft.IdentityModel.Logging;
 #nullable enable
 namespace Microsoft.IdentityModel.Tokens
 {
-    internal record struct ValidatedSigningKeyLifetime(DateTime? ValidFrom, DateTime? ValidTo, DateTime? ValidationTime);
-
     /// <summary>
     /// Definition for delegate that will validate the <see cref="SecurityKey"/> that signed a <see cref="SecurityToken"/>.
     /// </summary>

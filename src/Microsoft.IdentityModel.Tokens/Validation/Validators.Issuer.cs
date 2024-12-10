@@ -9,16 +9,6 @@ using Microsoft.IdentityModel.Logging;
 #nullable enable
 namespace Microsoft.IdentityModel.Tokens
 {
-    // TODO how do we extend this?
-    internal enum IssuerValidationSource
-    {
-        NotValidated = 0,
-        IssuerMatchedConfiguration,
-        IssuerMatchedValidationParameters
-    }
-
-    internal record struct ValidatedIssuer(string Issuer, IssuerValidationSource ValidationSource);
-
     /// <summary>
     /// Definition for delegate that will validate the issuer value in a token.
     /// </summary>

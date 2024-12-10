@@ -8,7 +8,6 @@ using Microsoft.IdentityModel.Logging;
 #nullable enable
 namespace Microsoft.IdentityModel.Tokens
 {
-    internal record struct ValidatedTokenType(string Type, int ValidTypeCount);
     /// <summary>
     /// Definition for delegate that will validate the token type of a token.
     /// </summary>
