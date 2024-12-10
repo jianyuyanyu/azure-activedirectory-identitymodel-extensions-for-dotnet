@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-using System.Diagnostics;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.IdentityModel.Logging;
@@ -27,7 +26,7 @@ namespace Microsoft.IdentityModel.Tokens
         CancellationToken cancellationToken);
 
     /// <summary>
-    /// IssuerValidation
+    /// Partial class for Issuer Validation.
     /// </summary>
     public static partial class Validators
     {
@@ -113,13 +112,7 @@ namespace Microsoft.IdentityModel.Tokens
                     }
 
                     if (string.Equals(validationParameters.ValidIssuers[i], issuer))
-                    {
-                        // TODO: Add to CallContext
-                        //if (LogHelper.IsEnabled(EventLogLevel.Informational))
-                        //    LogHelper.LogInformation(LogMessages.IDX10236, LogHelper.MarkAsNonPII(issuer));
-
                         return new ValidatedIssuer(issuer!, IssuerValidationSource.IssuerMatchedValidationParameters);
-                    }
                 }
             }
 

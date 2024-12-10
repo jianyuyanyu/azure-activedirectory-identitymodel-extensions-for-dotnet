@@ -25,6 +25,9 @@ namespace Microsoft.IdentityModel.Tokens
         ValidationParameters validationParameters,
         CallContext callContext);
 
+    /// <summary>
+    /// Partial class for Algorithm Validation.
+    /// </summary>
     public static partial class Validators
     {
         /// <summary>
@@ -34,15 +37,15 @@ namespace Microsoft.IdentityModel.Tokens
         /// <param name="securityKey">The <see cref="SecurityKey"/> that signed the <see cref="SecurityToken"/>.</param>
         /// <param name="securityToken">The <see cref="SecurityToken"/> being validated.</param>
         /// <param name="validationParameters"><see cref="ValidationParameters"/> required for validation.</param>
-        /// <param name="callContext"></param>
-#pragma warning disable CA1801 // TODO: remove pragma disable once callContext is used for logging
+        /// <param name="callContext">The <see cref="CallContext"/> that contains call information.</param>
         internal static ValidationResult<string> ValidateAlgorithm(
             string algorithm,
+#pragma warning disable CA1801
             SecurityKey securityKey,
             SecurityToken securityToken,
             ValidationParameters validationParameters,
             CallContext callContext)
-#pragma warning restore CA1801 // TODO: remove pragma disable once callContext is used for logging
+#pragma warning restore CA1801
         {
             if (validationParameters == null)
                 return ValidationError.NullParameter(

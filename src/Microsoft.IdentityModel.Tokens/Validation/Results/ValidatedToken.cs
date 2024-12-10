@@ -48,27 +48,60 @@ namespace Microsoft.IdentityModel.Tokens
             );
         }
 
+        /// <summary>
+        /// The <see cref="SecurityToken"/> that was validated.
+        /// </summary>
         public SecurityToken SecurityToken { get; private set; }
 
+        /// <summary>
+        /// The <see cref="TokenHandler"/> that was used to validate the token.
+        /// </summary>
         public TokenHandler TokenHandler { get; private set; }
 
+        /// <summary>
+        /// The <see cref="ValidationParameters"/> that were used to validate the token.
+        /// </summary>
         public ValidationParameters ValidationParameters { get; private set; }
 
         #region Validated Properties
+        /// <summary>
+        /// The result of validating the actor, if any.
+        /// </summary>
         public ValidatedToken? ActorValidationResult { get; internal set; }
 
+        /// <summary>
+        /// The audience that was validated, if any.
+        /// </summary>
         public string? ValidatedAudience { get; internal set; }
 
+        /// <summary>
+        /// The issuer that was validated. If present, it contains the source of the validation as well.
+        /// </summary>
         public ValidatedIssuer? ValidatedIssuer { get; internal set; }
 
+        /// <summary>
+        /// The lifetime that was validated, if any.
+        /// </summary>
         public ValidatedLifetime? ValidatedLifetime { get; internal set; }
 
+        /// <summary>
+        /// The expiration time of the token that was used to validate the token was not replayed, if any.
+        /// </summary>
         public DateTime? ValidatedTokenReplayExpirationTime { get; internal set; }
 
+        /// <summary>
+        /// The token type that was validated, if any.
+        /// </summary>
         public ValidatedTokenType? ValidatedTokenType { get; internal set; }
 
+        /// <summary>
+        /// The <see cref="SecurityKey"/> that was used to validate the token, if any.
+        /// </summary>
         public SecurityKey? ValidatedSigningKey { get; internal set; }
 
+        /// <summary>
+        /// The validated lifetime of the <see cref="SecurityKey"/> that was used to sign the token, if any.
+        /// </summary>
         public ValidatedSigningKeyLifetime? ValidatedSigningKeyLifetime { get; internal set; }
         #endregion
 
@@ -177,6 +210,9 @@ namespace Microsoft.IdentityModel.Tokens
         #endregion
 
         #region Logging
+        /// <summary>
+        /// Internal class used for logging.
+        /// </summary>
         private static class Logger
         {
             private static readonly Action<ILogger, string, string, Exception?> s_tokenValidationFailed =

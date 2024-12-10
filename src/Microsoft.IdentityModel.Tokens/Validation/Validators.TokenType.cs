@@ -14,7 +14,7 @@ namespace Microsoft.IdentityModel.Tokens
     /// <param name="type">The token type or <c>null</c> if it couldn't be resolved (e.g from the 'typ' header for a JWT).</param>
     /// <param name="securityToken">The <see cref="SecurityToken"/> that is being validated.</param>
     /// <param name="validationParameters"><see cref="ValidationParameters"/> required for validation.</param>
-    /// <param name="callContext"></param>
+    /// <param name="callContext">The <see cref="CallContext"/> that contains call information.</param>
     /// <returns> A <see cref="ValidationResult{TResult}"/>that contains the results of validating the token type.</returns>
     /// <remarks>An EXACT match is required. <see cref="StringComparison.Ordinal"/> (case sensitive) is used for comparing <paramref name="type"/> against <see cref="ValidationParameters.ValidTypes"/>.</remarks>
     internal delegate ValidationResult<ValidatedTokenType> TokenTypeValidationDelegate(
@@ -23,6 +23,9 @@ namespace Microsoft.IdentityModel.Tokens
         ValidationParameters validationParameters,
         CallContext callContext);
 
+    /// <summary>
+    /// Partial class for Token Type Validation.
+    /// </summary>
     public static partial class Validators
     {
         /// <summary>
@@ -31,16 +34,16 @@ namespace Microsoft.IdentityModel.Tokens
         /// <param name="type">The token type or <c>null</c> if it couldn't be resolved (e.g from the 'typ' header for a JWT).</param>
         /// <param name="securityToken">The <see cref="SecurityToken"/> that is being validated.</param>
         /// <param name="validationParameters"><see cref="ValidationParameters"/> required for validation.</param>
-        /// <param name="callContext"></param>
+        /// <param name="callContext">The <see cref="CallContext"/> that contains call information.</param>
         /// <returns> A <see cref="ValidationResult{TResult}"/>that contains the results of validating the token type.</returns>
         /// <remarks>An EXACT match is required. <see cref="StringComparison.Ordinal"/> (case sensitive) is used for comparing <paramref name="type"/> against <see cref="ValidationParameters.ValidTypes"/>.</remarks>
-#pragma warning disable CA1801 // TODO: remove pragma disable once callContext is used for logging
+#pragma warning disable CA1801
         internal static ValidationResult<ValidatedTokenType> ValidateTokenType(
             string? type,
             SecurityToken? securityToken,
             ValidationParameters validationParameters,
             CallContext callContext)
-#pragma warning restore CA1801 // TODO: remove pragma disable once callContext is used for logging
+#pragma warning restore CA1801
         {
             if (securityToken == null)
                 return TokenTypeValidationError.NullParameter(
