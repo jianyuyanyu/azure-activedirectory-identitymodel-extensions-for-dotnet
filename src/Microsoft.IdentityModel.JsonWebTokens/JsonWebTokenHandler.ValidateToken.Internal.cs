@@ -340,6 +340,11 @@ namespace Microsoft.IdentityModel.JsonWebTokens
                 if (!actorReadingResult.IsValid)
                     return actorReadingResult.UnwrapError().AddCurrentStackFrame();
 
+                if (validationParameters.ActorValidationParameters is null)
+                    return ValidationError.NullParameter(
+                        nameof(validationParameters.ActorValidationParameters),
+                        ValidationError.GetCurrentStackFrame());
+
                 JsonWebToken actorToken = (actorReadingResult.UnwrapResult() as JsonWebToken)!;
                 ValidationParameters actorParameters = validationParameters.ActorValidationParameters;
                 ValidationResult<ValidatedToken> innerActorValidationResult =
