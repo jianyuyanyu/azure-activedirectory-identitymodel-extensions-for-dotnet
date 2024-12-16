@@ -3434,11 +3434,11 @@ namespace Microsoft.IdentityModel.JsonWebTokens.Tests
 
             TheoryData<JWEDecompressionTheoryData> theoryData = new TheoryData<JWEDecompressionTheoryData>();
 #if NETCOREAPP2_1
-            string strU = new string('U', 20_000_000);
-            string strUU = new string('U', 15_000_000);
+            string strU = new string('U', 2000000);
+            string strUU = new string('U', 1500000);
 #else
-            string strU = new string('U', 100_000_000);
-            string strUU = new string('U', 40_000_000);
+            string strU = new string('U', 4000000);
+            string strUU = new string('U', 3000000);
 #endif
 
             string payload = $@"{{""U"":""{strU}"", ""UU"":""{strUU}""}}";
