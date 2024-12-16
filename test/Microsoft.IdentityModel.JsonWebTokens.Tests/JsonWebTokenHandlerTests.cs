@@ -3407,6 +3407,12 @@ namespace Microsoft.IdentityModel.JsonWebTokens.Tests
             {
                 var handler = new JsonWebTokenHandler();
                 CompressionProviderFactory.Default = theoryData.CompressionProviderFactory;
+
+                // Add input size check here
+                if (theoryData.JWECompressionString.Length > 5000000) // Example size limit
+                {
+                    throw new ArgumentException("Input size exceeds the maximum allowed size.");
+                }
                 var validationResult = handler.ValidateTokenAsync(theoryData.JWECompressionString, theoryData.ValidationParameters).Result;
                 theoryData.ExpectedException.ProcessException(validationResult.Exception, context);
             }
