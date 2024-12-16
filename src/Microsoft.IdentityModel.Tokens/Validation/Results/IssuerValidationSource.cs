@@ -9,15 +9,30 @@ namespace Microsoft.IdentityModel.Tokens
     /// </summary>
     internal class IssuerValidationSource
     {
-        protected IssuerValidationSource(string name)
-        {
-            Name = name;
-        }
+        /// <summary>
+        /// Initializes a new instance of <see cref="IssuerValidationSource"/>.
+        /// </summary>
+        /// <param name="name">The name of the issuer validation source.</param>
+        public IssuerValidationSource(string name) => Name = name;
 
+        /// <summary>
+        /// The name of the issuer validation source.
+        /// </summary>
         public string Name { get; }
 
+        /// <summary>
+        /// Represents the issuer validation source that has not been validated.
+        /// </summary>
         public static readonly IssuerValidationSource NotValidated = new("NotValidated");
+
+        /// <summary>
+        /// Represents the issuer validation source that has been matched with the configuration provided.
+        /// </summary>
         public static readonly IssuerValidationSource IssuerMatchedConfiguration = new("IssuerMatchedConfiguration");
+
+        /// <summary>
+        /// Represents the issuer validation source that has been matched with the validation parameters provided.
+        /// </summary>
         public static readonly IssuerValidationSource IssuerMatchedValidationParameters = new("IssuerMatchedValidationParameters");
     }
 }

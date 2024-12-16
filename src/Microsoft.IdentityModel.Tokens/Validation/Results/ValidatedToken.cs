@@ -14,30 +14,21 @@ namespace Microsoft.IdentityModel.Tokens
     /// <summary>
     /// Contains the results of successfully validating a <see cref="SecurityToken"/>.
     /// </summary>
-    internal class ValidatedToken
+    /// <remarks>
+    /// Creates an instance of <see cref="ValidatedToken"/>
+    /// </remarks>
+    /// <param name="securityToken">The <see cref="SecurityToken"/> that is being validated.</param>
+    /// <param name="tokenHandler">The <see cref="TokenHandler"/> that is being used to validate the token.</param>
+    /// <param name="validationParameters">The <see cref="ValidationParameters"/> to be used for validating the token.</param>
+    internal class ValidatedToken(
+        SecurityToken securityToken,
+        TokenHandler tokenHandler,
+        ValidationParameters validationParameters)
     {
-        /// <summary>
-        /// Creates an instance of <see cref="ValidatedToken"/>
-        /// </summary>
-        /// <param name="securityToken">The <see cref="SecurityToken"/> that is being validated.</param>
-        /// <param name="tokenHandler">The <see cref="TokenHandler"/> that is being used to validate the token.</param>
-        /// <param name="validationParameters">The <see cref="ValidationParameters"/> to be used for validating the token.</param>
-        internal ValidatedToken(
-            SecurityToken securityToken,
-            TokenHandler tokenHandler,
-            ValidationParameters validationParameters)
-        {
-            TokenHandler = tokenHandler ?? throw new ArgumentNullException(nameof(tokenHandler));
-            SecurityToken = securityToken ?? throw new ArgumentNullException(nameof(securityToken));
-            ValidationParameters = validationParameters ?? throw new ArgumentNullException(nameof(validationParameters));
-        }
-
         /// <summary>
         /// Logs the validation result.
         /// </summary>
-        public void Log(ILogger logger)
-        {
-            Logger.TokenValidationSucceeded(
+        public void Log(ILogger logger) => Logger.TokenValidationSucceeded(
                 logger,
                 ValidatedAudience ?? "none",
                 ValidatedLifetime,
@@ -46,22 +37,21 @@ namespace Microsoft.IdentityModel.Tokens
                 ValidatedSigningKey?.KeyId ?? "none",
                 ActorValidationResult is not null
             );
-        }
 
         /// <summary>
         /// The <see cref="SecurityToken"/> that was validated.
         /// </summary>
-        public SecurityToken SecurityToken { get; private set; }
+        public SecurityToken SecurityToken { get; private set; } = securityToken ?? throw new ArgumentNullException(nameof(securityToken));
 
         /// <summary>
         /// The <see cref="TokenHandler"/> that was used to validate the token.
         /// </summary>
-        public TokenHandler TokenHandler { get; private set; }
+        public TokenHandler TokenHandler { get; private set; } = tokenHandler ?? throw new ArgumentNullException(nameof(tokenHandler));
 
         /// <summary>
         /// The <see cref="ValidationParameters"/> that were used to validate the token.
         /// </summary>
-        public ValidationParameters ValidationParameters { get; private set; }
+        public ValidationParameters ValidationParameters { get; private set; } = validationParameters ?? throw new ArgumentNullException(nameof(validationParameters));
 
         #region Validated Properties
         /// <summary>

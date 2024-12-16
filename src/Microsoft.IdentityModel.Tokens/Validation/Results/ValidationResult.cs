@@ -186,7 +186,7 @@ namespace Microsoft.IdentityModel.Tokens
         /// </summary>#
         /// <remarks>Required for compatibility, see CA2225 for more information</remarks>
         /// <returns>The existing instance.</returns>
-        public ValidationResult<TResult> ToResult()
+        public ValidationResult<TResult> ToValidationResult()
         {
             return this;
         }
