@@ -18,7 +18,7 @@ namespace Microsoft.IdentityModel.Tokens
     /// <param name="callContext"></param>
     /// <returns>A <see cref="ValidationResult{TResult}"/>that contains the results of validating the issuer.</returns>
     /// <remarks>This delegate is not expected to throw.</remarks>
-    internal delegate ValidationResult<string> AudienceValidationDelegate(
+    public delegate ValidationResult<string> AudienceValidationDelegate(
         IList<string> tokenAudiences,
         SecurityToken? securityToken,
         ValidationParameters validationParameters,
@@ -37,7 +37,7 @@ namespace Microsoft.IdentityModel.Tokens
         /// <param name="validationParameters">The <see cref="TokenValidationParameters"/> to be used for validating the token.</param>
         /// <param name="callContext">The <see cref="CallContext"/> that contains call information.</param>
         /// <remarks>An EXACT match is required.</remarks>
-        internal static ValidationResult<string> ValidateAudience(
+        public static ValidationResult<string> ValidateAudience(
             IList<string> tokenAudiences,
 #pragma warning disable CA1801
             SecurityToken? securityToken,

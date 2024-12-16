@@ -182,7 +182,7 @@ namespace Microsoft.IdentityModel.Tokens
     /// <param name="callContext">The <see cref="CallContext"/> used for logging.</param>
     /// <returns>The <see cref="SecurityKey"/> used to validate the signature.</returns>
     /// <remarks>If both <see cref="IssuerSigningKeyResolverUsingConfiguration"/> and <see cref="IssuerSigningKeyResolver"/> are set, <see cref="IssuerSigningKeyResolverUsingConfiguration"/> takes priority.</remarks>
-    internal delegate SecurityKey? IssuerSigningKeyResolverDelegate(string token, SecurityToken? securityToken, string? kid, ValidationParameters validationParameters, BaseConfiguration? configuration, CallContext? callContext);
+    public delegate SecurityKey? IssuerSigningKeyResolverDelegate(string token, SecurityToken? securityToken, string? kid, ValidationParameters validationParameters, BaseConfiguration? configuration, CallContext? callContext);
 
     /// <summary>
     /// Resolves the decryption key for the security token.
@@ -193,7 +193,7 @@ namespace Microsoft.IdentityModel.Tokens
     /// <param name="validationParameters">The <see cref="ValidationParameters"/> to be used for validating the token.</param>
     /// <param name="callContext">The <see cref="CallContext"/> to be used for logging.</param>
     /// <returns>The <see cref="SecurityKey"/> used to decrypt the token.</returns>
-    internal delegate IList<SecurityKey> DecryptionKeyResolverDelegate(string token, SecurityToken securityToken, string kid, ValidationParameters validationParameters, CallContext? callContext);
+    public delegate IList<SecurityKey> DecryptionKeyResolverDelegate(string token, SecurityToken securityToken, string kid, ValidationParameters validationParameters, CallContext? callContext);
 
     /// <summary>
     /// Validates the signature of the security token.
@@ -204,7 +204,7 @@ namespace Microsoft.IdentityModel.Tokens
     /// <param name="callContext">The <see cref="CallContext"/> to be used for logging.</param>
     /// <remarks>This method is not expected to throw.</remarks>
     /// <returns>The validated <see cref="SecurityToken"/>.</returns>
-    internal delegate ValidationResult<SecurityKey> SignatureValidationDelegate(
+    public delegate ValidationResult<SecurityKey> SignatureValidationDelegate(
         SecurityToken token,
         ValidationParameters validationParameters,
         BaseConfiguration? configuration,

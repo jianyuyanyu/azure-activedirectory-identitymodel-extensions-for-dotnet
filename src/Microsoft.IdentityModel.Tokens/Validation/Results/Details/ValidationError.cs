@@ -15,7 +15,7 @@ namespace Microsoft.IdentityModel.Tokens
     /// <summary>
     /// Contains information so that Exceptions can be logged or thrown written as required.
     /// </summary>
-    internal class ValidationError
+    public class ValidationError
     {
         private Type _exceptionType;
 
@@ -199,7 +199,7 @@ namespace Microsoft.IdentityModel.Tokens
         /// <summary>
         /// Gets the type of validation failure that occurred.
         /// </summary>
-        internal ValidationFailureType FailureType { get; }
+        public ValidationFailureType FailureType { get; }
 
         /// <summary>
         /// Gets the type of exception that occurred.

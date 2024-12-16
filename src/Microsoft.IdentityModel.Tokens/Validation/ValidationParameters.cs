@@ -14,7 +14,7 @@ namespace Microsoft.IdentityModel.Tokens
     /// <summary>
     /// Contains a set of parameters that are used by a <see cref="SecurityTokenHandler"/> when validating a <see cref="SecurityToken"/>.
     /// </summary>
-    internal class ValidationParameters
+    public class ValidationParameters
     {
         private string? _authenticationType;
         private TimeSpan _clockSkew = DefaultClockSkew;

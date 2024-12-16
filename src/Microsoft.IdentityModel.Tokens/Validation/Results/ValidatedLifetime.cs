@@ -9,7 +9,7 @@ namespace Microsoft.IdentityModel.Tokens
     /// <summary>
     /// Represents a validated lifetime, including the NotBefore and Expires values.
     /// </summary>
-    internal readonly struct ValidatedLifetime : IEquatable<ValidatedLifetime>
+    public readonly struct ValidatedLifetime : IEquatable<ValidatedLifetime>
     {
         /// <summary>
         /// Initializes a new instance of <see cref="ValidatedLifetime"/>.

@@ -11,7 +11,7 @@ namespace Microsoft.IdentityModel.Tokens
     /// Represents a validation result that can be either valid or invalid.
     /// </summary>
     /// <typeparam name="TResult"></typeparam>
-    internal readonly struct ValidationResult<TResult> : IEquatable<ValidationResult<TResult>>
+    public readonly struct ValidationResult<TResult> : IEquatable<ValidationResult<TResult>>
     {
         readonly TResult? _result;
         readonly ValidationError? _error;

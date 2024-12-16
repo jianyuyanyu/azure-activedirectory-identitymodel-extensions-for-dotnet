@@ -18,7 +18,7 @@ namespace Microsoft.IdentityModel.Tokens
     /// <param name="callContext"></param>
     /// <returns>A <see cref="ValidationResult{TResult}"/>that contains the results of validating the algorithm.</returns>
     /// <remarks>This delegate is not expected to throw.</remarks>
-    internal delegate ValidationResult<string> AlgorithmValidationDelegate(
+    public delegate ValidationResult<string> AlgorithmValidationDelegate(
         string algorithm,
         SecurityKey securityKey,
         SecurityToken securityToken,
@@ -38,7 +38,7 @@ namespace Microsoft.IdentityModel.Tokens
         /// <param name="securityToken">The <see cref="SecurityToken"/> being validated.</param>
         /// <param name="validationParameters"><see cref="ValidationParameters"/> required for validation.</param>
         /// <param name="callContext">The <see cref="CallContext"/> that contains call information.</param>
-        internal static ValidationResult<string> ValidateAlgorithm(
+        public static ValidationResult<string> ValidateAlgorithm(
             string algorithm,
 #pragma warning disable CA1801
             SecurityKey securityKey,

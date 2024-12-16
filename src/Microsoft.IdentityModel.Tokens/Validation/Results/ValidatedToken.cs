@@ -20,7 +20,7 @@ namespace Microsoft.IdentityModel.Tokens
     /// <param name="securityToken">The <see cref="SecurityToken"/> that is being validated.</param>
     /// <param name="tokenHandler">The <see cref="TokenHandler"/> that is being used to validate the token.</param>
     /// <param name="validationParameters">The <see cref="ValidationParameters"/> to be used for validating the token.</param>
-    internal class ValidatedToken(
+    public class ValidatedToken(
         SecurityToken securityToken,
         TokenHandler tokenHandler,
         ValidationParameters validationParameters)

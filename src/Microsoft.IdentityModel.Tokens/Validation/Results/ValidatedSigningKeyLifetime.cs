@@ -9,7 +9,7 @@ namespace Microsoft.IdentityModel.Tokens
     /// <summary>
     /// Represents a validated signing key lifetime.
     /// </summary>
-    internal readonly struct ValidatedSigningKeyLifetime : IEquatable<ValidatedSigningKeyLifetime>
+    public readonly struct ValidatedSigningKeyLifetime : IEquatable<ValidatedSigningKeyLifetime>
     {
         /// <summary>
         /// Initializes a new instance of <see cref="ValidatedSigningKeyLifetime"/>.

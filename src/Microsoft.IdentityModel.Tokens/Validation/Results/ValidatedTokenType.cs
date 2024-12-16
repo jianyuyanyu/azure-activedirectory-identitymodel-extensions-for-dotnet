@@ -9,7 +9,7 @@ namespace Microsoft.IdentityModel.Tokens
     /// <summary>
     /// Represents a validated token type, including the number of valid types present in the validation parameters.
     /// </summary>
-    internal readonly struct ValidatedTokenType : IEquatable<ValidatedTokenType>
+    public readonly struct ValidatedTokenType : IEquatable<ValidatedTokenType>
     {
         /// <summary>
         /// Initializes a new instance of <see cref="ValidatedTokenType"/>.
@@ -62,10 +62,7 @@ namespace Microsoft.IdentityModel.Tokens
         /// <param name="left">The left value to compare.</param>
         /// <param name="right">The right value to compare.</param>
         /// <returns>A boolean indicating whether the left value is equal to the right one.</returns>
-        public static bool operator ==(ValidatedTokenType left, ValidatedTokenType right)
-        {
-            return left.Equals(right);
-        }
+        public static bool operator ==(ValidatedTokenType left, ValidatedTokenType right) => left.Equals(right);
 
         /// <summary>
         /// Inequality comparison operator for <see cref="ValidatedTokenType"/>.

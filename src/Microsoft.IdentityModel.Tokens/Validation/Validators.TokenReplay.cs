@@ -15,7 +15,7 @@ namespace Microsoft.IdentityModel.Tokens
     /// <param name="callContext">The <see cref="CallContext"/> that contains call information.</param>
     /// <returns>A <see cref="ValidationResult{TResult}"/>that contains the results of validating the token.</returns>
     /// <remarks>This delegate is not expected to throw.</remarks>
-    internal delegate ValidationResult<DateTime?> TokenReplayValidationDelegate(
+    public delegate ValidationResult<DateTime?> TokenReplayValidationDelegate(
         DateTime? expirationTime,
         string securityToken,
         ValidationParameters validationParameters,
@@ -34,7 +34,7 @@ namespace Microsoft.IdentityModel.Tokens
         /// <param name="validationParameters">The <see cref="ValidationParameters"/> to be used for validating the token.</param>
         /// <param name="callContext">The <see cref="CallContext"/> that contains call information.</param>
 #pragma warning disable CA1801 // Review unused parameters
-        internal static ValidationResult<DateTime?> ValidateTokenReplay(
+        public static ValidationResult<DateTime?> ValidateTokenReplay(
             DateTime? expirationTime,
             string securityToken,
             ValidationParameters validationParameters,

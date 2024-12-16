@@ -17,7 +17,7 @@ namespace Microsoft.IdentityModel.Tokens
     /// <param name="callContext">The <see cref="CallContext"/> that contains call information.</param>
     /// <returns> A <see cref="ValidationResult{TResult}"/>that contains the results of validating the token type.</returns>
     /// <remarks>An EXACT match is required. <see cref="StringComparison.Ordinal"/> (case sensitive) is used for comparing <paramref name="type"/> against <see cref="ValidationParameters.ValidTypes"/>.</remarks>
-    internal delegate ValidationResult<ValidatedTokenType> TokenTypeValidationDelegate(
+    public delegate ValidationResult<ValidatedTokenType> TokenTypeValidationDelegate(
         string? type,
         SecurityToken? securityToken,
         ValidationParameters validationParameters,
@@ -37,11 +37,11 @@ namespace Microsoft.IdentityModel.Tokens
         /// <param name="callContext">The <see cref="CallContext"/> that contains call information.</param>
         /// <returns> A <see cref="ValidationResult{TResult}"/>that contains the results of validating the token type.</returns>
         /// <remarks>An EXACT match is required. <see cref="StringComparison.Ordinal"/> (case sensitive) is used for comparing <paramref name="type"/> against <see cref="ValidationParameters.ValidTypes"/>.</remarks>
-#pragma warning disable CA1801
-        internal static ValidationResult<ValidatedTokenType> ValidateTokenType(
+        public static ValidationResult<ValidatedTokenType> ValidateTokenType(
             string? type,
             SecurityToken? securityToken,
             ValidationParameters validationParameters,
+#pragma warning disable CA1801
             CallContext callContext)
 #pragma warning restore CA1801
         {

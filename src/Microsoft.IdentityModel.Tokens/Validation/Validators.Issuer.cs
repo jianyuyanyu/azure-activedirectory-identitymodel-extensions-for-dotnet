@@ -18,7 +18,7 @@ namespace Microsoft.IdentityModel.Tokens
     /// <param name="cancellationToken"></param>
     /// <returns>An <see cref="ValidationResult{TResult}"/>that contains the results of validating the issuer.</returns>
     /// <remarks>This delegate is not expected to throw.</remarks>
-    internal delegate Task<ValidationResult<ValidatedIssuer>> IssuerValidationDelegateAsync(
+    public delegate Task<ValidationResult<ValidatedIssuer>> IssuerValidationDelegateAsync(
         string issuer,
         SecurityToken securityToken,
         ValidationParameters validationParameters,
@@ -40,7 +40,7 @@ namespace Microsoft.IdentityModel.Tokens
         /// <param name="cancellationToken"></param>
         /// <returns>An <see cref="ValidationResult{TResult}"/> that contains either the issuer that was validated or an error.</returns>
         /// <remarks>An EXACT match is required.</remarks>
-        internal static async Task<ValidationResult<ValidatedIssuer>> ValidateIssuerAsync(
+        public static async Task<ValidationResult<ValidatedIssuer>> ValidateIssuerAsync(
             string? issuer,
             SecurityToken? securityToken,
             ValidationParameters validationParameters,

@@ -9,7 +9,7 @@ namespace Microsoft.IdentityModel.Tokens
     /// <summary>
     /// Represents a validated issuer, including the source of the validation.
     /// </summary>
-    internal readonly struct ValidatedIssuer : IEquatable<ValidatedIssuer>
+    public readonly struct ValidatedIssuer : IEquatable<ValidatedIssuer>
     {
         /// <summary>
         /// Initializes a new instance of <see cref="ValidatedIssuer"/>.

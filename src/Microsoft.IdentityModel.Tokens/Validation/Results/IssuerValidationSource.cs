@@ -7,7 +7,7 @@ namespace Microsoft.IdentityModel.Tokens
     /// <summary>
     /// Represents the source of the validation of an issuer.
     /// </summary>
-    internal class IssuerValidationSource
+    public class IssuerValidationSource
     {
         /// <summary>
         /// Initializes a new instance of <see cref="IssuerValidationSource"/>.

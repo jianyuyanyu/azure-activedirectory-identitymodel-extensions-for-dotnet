@@ -18,7 +18,7 @@ namespace Microsoft.IdentityModel.Tokens
     /// <param name="callContext">The <see cref="CallContext"/> to be used for logging.</param> 
     /// <returns>A <see cref="ValidationResult{TResult}"/>that contains the results of validating the issuer.</returns>
     /// <remarks>This delegate is not expected to throw.</remarks>
-    internal delegate ValidationResult<ValidatedSigningKeyLifetime> IssuerSigningKeyValidationDelegate(
+    public delegate ValidationResult<ValidatedSigningKeyLifetime> IssuerSigningKeyValidationDelegate(
         SecurityKey signingKey,
         SecurityToken securityToken,
         ValidationParameters validationParameters,
@@ -38,7 +38,7 @@ namespace Microsoft.IdentityModel.Tokens
         /// <param name="validationParameters">The <see cref="ValidationParameters"/> to be used for validating the token.</param>
         /// <param name="configuration">The <see cref="BaseConfiguration"/> to be used for validation.</param>
         /// <param name="callContext">The <see cref="CallContext"/> that contains call information.</param>
-        internal static ValidationResult<ValidatedSigningKeyLifetime> ValidateIssuerSigningKey(
+        public static ValidationResult<ValidatedSigningKeyLifetime> ValidateIssuerSigningKey(
             SecurityKey securityKey,
             SecurityToken securityToken,
             ValidationParameters validationParameters,

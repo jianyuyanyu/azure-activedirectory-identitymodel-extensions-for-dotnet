@@ -17,7 +17,7 @@ namespace Microsoft.IdentityModel.Tokens
     /// <param name="callContext">The <see cref="CallContext"/> that contains call information.</param>
     /// <returns>A <see cref="ValidationResult{TResult}"/>that contains the results of validating the issuer.</returns>
     /// <remarks>This delegate is not expected to throw.</remarks>
-    internal delegate ValidationResult<ValidatedLifetime> LifetimeValidationDelegate(
+    public delegate ValidationResult<ValidatedLifetime> LifetimeValidationDelegate(
         DateTime? notBefore,
         DateTime? expires,
         SecurityToken? securityToken,
@@ -40,7 +40,7 @@ namespace Microsoft.IdentityModel.Tokens
         /// <returns>A <see cref="ValidationResult{TResult}"/> indicating whether validation was successful, and providing a <see cref="SecurityTokenInvalidLifetimeException"/> if it was not.</returns>
         /// <remarks>All time comparisons apply <see cref="ValidationParameters.ClockSkew"/>.</remarks>
 #pragma warning disable CA1801
-        internal static ValidationResult<ValidatedLifetime> ValidateLifetime(
+        public static ValidationResult<ValidatedLifetime> ValidateLifetime(
             DateTime? notBefore,
             DateTime? expires,
             SecurityToken? securityToken,
