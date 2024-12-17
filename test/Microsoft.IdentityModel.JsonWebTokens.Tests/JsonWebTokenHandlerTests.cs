@@ -51,9 +51,9 @@ namespace Microsoft.IdentityModel.JsonWebTokens.Tests
         public void CreateTokenThrowsNullArgumentException()
         {
             var handler = new JsonWebTokenHandler();
-            Assert.Throws<ArgumentNullException>(() => handler.CreateToken(null, Default.SymmetricEncryptingCredentials, new Dictionary<string, object> { {"key", "value" } }));
-            Assert.Throws<ArgumentNullException>(() => handler.CreateToken("Payload", (EncryptingCredentials) null, new Dictionary<string, object> { { "key", "value" } }));
-            Assert.Throws<ArgumentNullException>(() => handler.CreateToken("Payload", Default.SymmetricEncryptingCredentials, (Dictionary<string, object>) null));
+            Assert.Throws<ArgumentNullException>(() => handler.CreateToken(null, Default.SymmetricEncryptingCredentials, new Dictionary<string, object> { { "key", "value" } }));
+            Assert.Throws<ArgumentNullException>(() => handler.CreateToken("Payload", (EncryptingCredentials)null, new Dictionary<string, object> { { "key", "value" } }));
+            Assert.Throws<ArgumentNullException>(() => handler.CreateToken("Payload", Default.SymmetricEncryptingCredentials, (Dictionary<string, object>)null));
         }
 
         [Theory, MemberData(nameof(TokenValidationClaimsTheoryData))]
@@ -241,7 +241,7 @@ namespace Microsoft.IdentityModel.JsonWebTokens.Tests
                 theoryData);
 
 
-        JwtTestData.InvalidEncodedSegmentsData("", theoryData);
+            JwtTestData.InvalidEncodedSegmentsData("", theoryData);
             JwtTestData.ValidEncodedSegmentsData(theoryData);
 
             return theoryData;
@@ -2613,9 +2613,9 @@ namespace Microsoft.IdentityModel.JsonWebTokens.Tests
                 }
             };
 
-            if(jsonValidationResult.IsValid && jwtValidationResult.IsValid)
+            if (jsonValidationResult.IsValid && jwtValidationResult.IsValid)
             {
-                if(!IdentityComparer.AreEqual(jsonValidationResult, jwtValidationResult, context))
+                if (!IdentityComparer.AreEqual(jsonValidationResult, jwtValidationResult, context))
                 {
                     context.AddDiff("jsonValidationResult.IsValid && jwtValidationResult.IsValid, Validation results are not equal");
                 }
@@ -3430,6 +3430,9 @@ namespace Microsoft.IdentityModel.JsonWebTokens.Tests
 #if NETCOREAPP2_1
             string strU = new string('U', 20_000_000);
             string strUU = new string('U', 15_000_000);
+#elif NET452
+            string strU = new string('U', 1_000_000);
+            string strUU = new string('U', 500_000);
 #else
             string strU = new string('U', 100_000_000);
             string strUU = new string('U', 40_000_000);
@@ -3450,6 +3453,7 @@ namespace Microsoft.IdentityModel.JsonWebTokens.Tests
                     typeof(SecurityTokenDecompressionFailedException))
             });
 
+#if !NET452
             strUU = new string('U', 50_000_000);
             payload = $@"{{""U"":""{strU}"", ""UU"":""{strUU}""}}";
 
@@ -3464,6 +3468,7 @@ namespace Microsoft.IdentityModel.JsonWebTokens.Tests
                     typeof(ArgumentException),
                     "IDX10209:")
             });
+#endif
 
             return theoryData;
         }
@@ -3804,7 +3809,7 @@ namespace Microsoft.IdentityModel.JsonWebTokens.Tests
     }
 
     // Overrides CryptoProviderFactory.CreateAuthenticatedEncryptionProvider to create AuthenticatedEncryptionProviderMock that provides AesGcm encryption.
-    public class CryptoProviderFactoryMock: CryptoProviderFactory
+    public class CryptoProviderFactoryMock : CryptoProviderFactory
     {
         public override AuthenticatedEncryptionProvider CreateAuthenticatedEncryptionProvider(SecurityKey key, string algorithm)
         {
@@ -3816,9 +3821,9 @@ namespace Microsoft.IdentityModel.JsonWebTokens.Tests
     }
 
     // Overrides AuthenticatedEncryptionProvider.Encrypt to offer AesGcm encryption for testing.
-    public class AuthenticatedEncryptionProviderMock: AuthenticatedEncryptionProvider
+    public class AuthenticatedEncryptionProviderMock : AuthenticatedEncryptionProvider
     {
-        public AuthenticatedEncryptionProviderMock(SecurityKey key, string algorithm): base(key, algorithm)
+        public AuthenticatedEncryptionProviderMock(SecurityKey key, string algorithm) : base(key, algorithm)
         { }
 
         public override AuthenticatedEncryptionResult Encrypt(byte[] plaintext, byte[] authenticatedData)
@@ -3842,7 +3847,7 @@ namespace Microsoft.IdentityModel.JsonWebTokens.Tests
                 aes.Encrypt(iv, plaintext, ciphertext, authenticationTag, authenticatedData);
             }
 
-            return new AuthenticatedEncryptionResult(Key, ciphertext, iv, authenticationTag); 
+            return new AuthenticatedEncryptionResult(Key, ciphertext, iv, authenticationTag);
         }
     }
 
