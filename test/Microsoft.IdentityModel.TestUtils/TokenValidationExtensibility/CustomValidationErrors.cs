@@ -29,7 +29,7 @@ namespace Microsoft.IdentityModel.TestUtils
         {
         }
 
-        internal override Exception GetException()
+        public override Exception GetException()
         {
             if (ExceptionType == typeof(CustomSecurityTokenInvalidIssuerException))
             {
@@ -76,7 +76,7 @@ namespace Microsoft.IdentityModel.TestUtils
         {
         }
 
-        internal override Exception GetException()
+        public override Exception GetException()
         {
             if (ExceptionType == typeof(CustomSecurityTokenInvalidAudienceException))
             {
@@ -126,7 +126,7 @@ namespace Microsoft.IdentityModel.TestUtils
         {
         }
 
-        internal override Exception GetException()
+        public override Exception GetException()
         {
             if (ExceptionType == typeof(CustomSecurityTokenInvalidLifetimeException))
             {
@@ -176,7 +176,7 @@ namespace Microsoft.IdentityModel.TestUtils
         {
         }
 
-        internal override Exception GetException()
+        public override Exception GetException()
         {
             if (ExceptionType == typeof(CustomSecurityTokenInvalidSigningKeyException))
             {
@@ -221,7 +221,7 @@ namespace Microsoft.IdentityModel.TestUtils
             : base(messageDetail, validationFailureType, exceptionType, stackFrame, invalidTokenType, innerException)
         {
         }
-        internal override Exception GetException()
+        public override Exception GetException()
         {
             if (ExceptionType == typeof(CustomSecurityTokenInvalidTypeException))
             {
@@ -266,7 +266,7 @@ namespace Microsoft.IdentityModel.TestUtils
             base(messageDetail, validationFailureType, exceptionType, stackFrame, innerValidationError, innerException)
         {
         }
-        internal override Exception GetException()
+        public override Exception GetException()
         {
             if (ExceptionType == typeof(CustomSecurityTokenInvalidSignatureException))
             {
@@ -312,7 +312,7 @@ namespace Microsoft.IdentityModel.TestUtils
             : base(messageDetail, validationFailureType, exceptionType, stackFrame, algorithm, innerException)
         {
         }
-        internal override Exception GetException()
+        public override Exception GetException()
         {
             if (ExceptionType == typeof(CustomSecurityTokenInvalidAlgorithmException))
             {
@@ -359,7 +359,7 @@ namespace Microsoft.IdentityModel.TestUtils
         {
         }
 
-        internal override Exception GetException()
+        public override Exception GetException()
         {
             if (ExceptionType == typeof(CustomSecurityTokenReplayDetectedException))
             {

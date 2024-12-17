@@ -7,8 +7,21 @@ using System.Diagnostics;
 #nullable enable
 namespace Microsoft.IdentityModel.Tokens
 {
+    /// <summary>
+    /// Represents a lifetime validation error.
+    /// </summary>
     internal class LifetimeValidationError : ValidationError
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="LifetimeValidationError"/> class.
+        /// </summary>
+        /// <param name="messageDetail" /> contains information about the exception that is used to generate the exception message.
+        /// <param name="validationFailureType"/> is the type of validation failure that occurred.
+        /// <param name="exceptionType"/> is the type of exception that occurred.
+        /// <param name="stackFrame"/> is the stack frame where the exception occurred.
+        /// <param name="notBefore"/> is the date from which the token is valid.
+        /// <param name="expires"/> is the date at which the token expires.
+        /// <param name="innerException"/> is the inner exception that occurred.
         public LifetimeValidationError(
             MessageDetail messageDetail,
             ValidationFailureType validationFailureType,
@@ -28,7 +41,7 @@ namespace Microsoft.IdentityModel.Tokens
         /// Creates an instance of an <see cref="Exception"/> using <see cref="ValidationError"/>
         /// </summary>
         /// <returns>An instance of an Exception.</returns>
-        internal override Exception GetException()
+        public override Exception GetException()
         {
             if (ExceptionType == typeof(SecurityTokenNoExpirationException))
             {
@@ -68,9 +81,15 @@ namespace Microsoft.IdentityModel.Tokens
                 return base.GetException(ExceptionType, null);
         }
 
-        protected DateTime? NotBefore { get; }
+        /// <summary>
+        /// The date from which the token is valid.
+        /// </summary>
+        public DateTime? NotBefore { get; }
 
-        protected DateTime? Expires { get; }
+        /// <summary>
+        /// The date at which the token expires.
+        /// </summary>
+        public DateTime? Expires { get; }
     }
 }
 #nullable restore
