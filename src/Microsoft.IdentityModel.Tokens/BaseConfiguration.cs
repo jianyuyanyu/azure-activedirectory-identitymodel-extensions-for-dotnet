@@ -10,6 +10,7 @@ namespace Microsoft.IdentityModel.Tokens
     /// <summary>
     /// Represents a generic metadata configuration which is applicable for both XML and JSON based configurations.
     /// </summary>
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("ApiDesign", "RS0036:Annotate nullability of public types and members in the declared API", Justification = "Nullability annotations not yet added.")]
     public abstract class BaseConfiguration
     {
         /// <summary>

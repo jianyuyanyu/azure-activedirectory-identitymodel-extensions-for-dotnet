@@ -10,6 +10,7 @@ namespace Microsoft.IdentityModel.Tokens
     /// <summary>
     /// Provides Wrap and Unwrap key services.
     /// </summary>
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("ApiDesign", "RS0036:Annotate nullability of public types and members in the declared API", Justification = "Nullability annotations not yet added.")]
     public class SymmetricKeyWrapProvider : KeyWrapProvider
     {
         private static readonly byte[] _defaultIV = new byte[] { 0xA6, 0xA6, 0xA6, 0xA6, 0xA6, 0xA6, 0xA6, 0xA6 };

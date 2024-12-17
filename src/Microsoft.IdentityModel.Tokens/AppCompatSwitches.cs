@@ -9,6 +9,7 @@ namespace Microsoft.IdentityModel.Tokens;
 /// <remarks>
 /// Use <see cref="AppContextSwitches"/> instead.
 /// </remarks>
+[System.Diagnostics.CodeAnalysis.SuppressMessage("ApiDesign", "RS0036:Annotate nullability of public types and members in the declared API", Justification = "Nullability annotations not yet added.")]
 public static class AppCompatSwitches
 {
     /// <summary>

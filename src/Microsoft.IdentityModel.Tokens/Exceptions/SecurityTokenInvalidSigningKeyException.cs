@@ -10,6 +10,7 @@ namespace Microsoft.IdentityModel.Tokens
     /// Throw this exception when a received Security Token has an invalid issuer signing key.
     /// </summary>
     [Serializable]
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("ApiDesign", "RS0036:Annotate nullability of public types and members in the declared API", Justification = "Nullability annotations not yet added.")]
     public class SecurityTokenInvalidSigningKeyException : SecurityTokenValidationException
     {
         /// <summary>

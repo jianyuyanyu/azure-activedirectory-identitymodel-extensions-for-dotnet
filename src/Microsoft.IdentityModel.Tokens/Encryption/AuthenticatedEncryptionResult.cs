@@ -6,6 +6,7 @@ namespace Microsoft.IdentityModel.Tokens
     /// <summary>
     /// Contains the results of <see cref="AuthenticatedEncryptionProvider.Encrypt(byte[], byte[])"/> operation.
     /// </summary>
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("ApiDesign", "RS0036:Annotate nullability of public types and members in the declared API", Justification = "Nullability annotations not yet added.")]
     public class AuthenticatedEncryptionResult
     {
         /// <summary>

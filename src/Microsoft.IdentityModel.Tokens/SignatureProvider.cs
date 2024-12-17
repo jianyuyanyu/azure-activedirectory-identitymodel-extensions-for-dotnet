@@ -10,6 +10,7 @@ namespace Microsoft.IdentityModel.Tokens
     /// <summary>
     /// Provides signature services, signing and verifying.
     /// </summary>
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("ApiDesign", "RS0036:Annotate nullability of public types and members in the declared API", Justification = "Nullability annotations not yet added.")]
     public abstract class SignatureProvider : IDisposable
     {
         /// <summary>

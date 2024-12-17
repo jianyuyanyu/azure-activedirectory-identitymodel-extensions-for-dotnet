@@ -15,6 +15,7 @@ namespace Microsoft.IdentityModel.Tokens
     /// <summary>
     /// Encodes and Decodes strings as base64url encoding.
     /// </summary>
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("ApiDesign", "RS0036:Annotate nullability of public types and members in the declared API", Justification = "Nullability annotations not yet added.")]
     public static class Base64UrlEncoder
     {
         private const char base64PadCharacter = '=';

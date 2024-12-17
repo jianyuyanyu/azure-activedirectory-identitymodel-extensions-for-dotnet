@@ -8,6 +8,7 @@ namespace Microsoft.IdentityModel.Tokens
     /// <summary>
     /// Provides Wrap and Unwrap key services.
     /// </summary>
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("ApiDesign", "RS0036:Annotate nullability of public types and members in the declared API", Justification = "Nullability annotations not yet added.")]
     public abstract class KeyWrapProvider : IDisposable
     {
         /// <summary>

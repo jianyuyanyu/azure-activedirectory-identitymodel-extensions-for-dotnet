@@ -11,6 +11,7 @@ namespace Microsoft.IdentityModel.Tokens
     /// <summary>
     /// An <see cref="AsymmetricSecurityKey"/> that is backed by a <see cref="X509Certificate2"/>
     /// </summary>
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("ApiDesign", "RS0036:Annotate nullability of public types and members in the declared API", Justification = "Nullability annotations not yet added.")]
     public class X509SecurityKey : AsymmetricSecurityKey
     {
         AsymmetricAlgorithm _privateKey;

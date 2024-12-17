@@ -10,6 +10,7 @@ namespace Microsoft.IdentityModel.Tokens
     /// This exception is thrown when the token type ('typ' header claim) of a JWT token is invalid.
     /// </summary>
     [Serializable]
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("ApiDesign", "RS0036:Annotate nullability of public types and members in the declared API", Justification = "Nullability annotations not yet added.")]
     public class SecurityTokenInvalidTypeException : SecurityTokenValidationException
     {
         [NonSerialized]

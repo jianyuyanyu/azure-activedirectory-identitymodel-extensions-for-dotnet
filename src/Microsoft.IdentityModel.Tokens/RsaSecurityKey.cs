@@ -10,6 +10,7 @@ namespace Microsoft.IdentityModel.Tokens
     /// <summary>
     /// Represents a Rsa security key.
     /// </summary>
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("ApiDesign", "RS0036:Annotate nullability of public types and members in the declared API", Justification = "Nullability annotations not yet added.")]
     public class RsaSecurityKey : AsymmetricSecurityKey
     {
         private bool? _hasPrivateKey;

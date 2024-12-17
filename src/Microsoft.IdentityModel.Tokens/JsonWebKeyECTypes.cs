@@ -7,6 +7,7 @@ namespace Microsoft.IdentityModel.Tokens
     /// Constants for JsonWebKey Elliptical Curve Types
     /// https://datatracker.ietf.org/doc/html/rfc7518#section-6.2.1.1
     /// </summary>
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("ApiDesign", "RS0036:Annotate nullability of public types and members in the declared API", Justification = "Nullability annotations not yet added.")]
     public static class JsonWebKeyECTypes
     {
 #pragma warning disable 1591

@@ -8,6 +8,7 @@ namespace Microsoft.IdentityModel.Tokens
     /// If custom operators are needed, <see cref="CryptoProviderFactory.CustomCryptoProvider"/> can be set to return these operators. 
     /// This property will be checked before each creation.
     /// </summary>
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("ApiDesign", "RS0036:Annotate nullability of public types and members in the declared API", Justification = "Nullability annotations not yet added.")]
     public interface ICryptoProvider
     {
         /// <summary>

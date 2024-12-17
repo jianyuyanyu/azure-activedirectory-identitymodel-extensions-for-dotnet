@@ -12,6 +12,7 @@ namespace Microsoft.IdentityModel.Tokens
     /// Defines a cache for crypto providers.
     /// Current support is limited to <see cref="SignatureProvider"/> only.
     /// </summary>
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("ApiDesign", "RS0036:Annotate nullability of public types and members in the declared API", Justification = "Nullability annotations not yet added.")]
     public class InMemoryCryptoProviderCache : CryptoProviderCache, IDisposable
     {
         internal CryptoProviderCacheOptions _cryptoProviderCacheOptions;

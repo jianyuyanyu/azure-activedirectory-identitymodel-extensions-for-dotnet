@@ -16,6 +16,7 @@ namespace Microsoft.IdentityModel.Tokens
     /// <remarks>
     /// There is no support for <see cref="CspParameters"/> and <see cref="CspKeyContainerInfo"/> on non-Windows platforms which makes <see cref="RSACryptoServiceProviderProxy"/> a Windows-specific class.
     /// </remarks>
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("ApiDesign", "RS0036:Annotate nullability of public types and members in the declared API", Justification = "Nullability annotations not yet added.")]
     public class RSACryptoServiceProviderProxy : RSA
     {
         // CryptoApi provider type for an RSA provider supporting sha-256 digital signatures

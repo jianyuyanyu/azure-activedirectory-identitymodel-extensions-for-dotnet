@@ -10,6 +10,7 @@ namespace Microsoft.IdentityModel.Tokens
     /// This exception is thrown when a security token contained a key identifier but the key was not found by the runtime.
     /// </summary>
     [Serializable]
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("ApiDesign", "RS0036:Annotate nullability of public types and members in the declared API", Justification = "Nullability annotations not yet added.")]
     public class SecurityTokenSignatureKeyNotFoundException : SecurityTokenInvalidSignatureException
     {
         /// <summary>

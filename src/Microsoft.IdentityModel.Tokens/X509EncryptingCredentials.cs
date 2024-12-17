@@ -9,6 +9,7 @@ namespace Microsoft.IdentityModel.Tokens
     /// <summary>
     /// An <see cref="X509EncryptingCredentials"/> designed to construct <see cref="EncryptingCredentials"/> based on a x509 certificate.
     /// </summary>
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("ApiDesign", "RS0036:Annotate nullability of public types and members in the declared API", Justification = "Nullability annotations not yet added.")]
     public class X509EncryptingCredentials : EncryptingCredentials
     {
         /// <summary>

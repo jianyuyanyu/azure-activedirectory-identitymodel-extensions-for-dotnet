@@ -20,6 +20,7 @@ namespace Microsoft.IdentityModel.Tokens
         "version see: https://aka.ms/SecurityTokenUnableToValidateException",
         false)]
     [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("ApiDesign", "RS0036:Annotate nullability of public types and members in the declared API", Justification = "Nullability annotations not yet added.")]
     public class SecurityTokenUnableToValidateException : SecurityTokenInvalidSignatureException
     {
         [NonSerialized]

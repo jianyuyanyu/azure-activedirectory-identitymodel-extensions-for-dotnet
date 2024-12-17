@@ -10,6 +10,7 @@ namespace Microsoft.IdentityModel.Tokens
     /// This exception is thrown when the cloud instance of the signing key was not matched with the cloud instance from configuration.
     /// </summary>
     [Serializable]
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("ApiDesign", "RS0036:Annotate nullability of public types and members in the declared API", Justification = "Nullability annotations not yet added.")]
     public class SecurityTokenInvalidCloudInstanceException : SecurityTokenInvalidSigningKeyException
     {
         [NonSerialized]

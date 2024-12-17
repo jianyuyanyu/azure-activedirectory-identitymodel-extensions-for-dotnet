@@ -11,6 +11,7 @@ namespace Microsoft.IdentityModel.Tokens
     /// in the future.
     /// </summary>
     [Serializable]
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("ApiDesign", "RS0036:Annotate nullability of public types and members in the declared API", Justification = "Nullability annotations not yet added.")]
     public class SecurityTokenNotYetValidException : SecurityTokenValidationException
     {
         [NonSerialized]

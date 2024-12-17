@@ -8,6 +8,7 @@ namespace Microsoft.IdentityModel.Tokens
     /// <summary>
     /// Interface that defines a simple cache for tacking replaying of security tokens.
     /// </summary>
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("ApiDesign", "RS0036:Annotate nullability of public types and members in the declared API", Justification = "Nullability annotations not yet added.")]
     public interface ITokenReplayCache
     {
         /// <summary>

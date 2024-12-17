@@ -16,6 +16,7 @@ namespace Microsoft.IdentityModel.Tokens
     /// Contains a collection of <see cref="JsonWebKey"/> that can be populated from a json string.
     /// </summary>
     /// <remarks>provides support for https://datatracker.ietf.org/doc/html/rfc7517.</remarks>
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("ApiDesign", "RS0036:Annotate nullability of public types and members in the declared API", Justification = "Nullability annotations not yet added.")]
     public class JsonWebKeySet
     {
         internal const string ClassName = "Microsoft.IdentityModel.Tokens.JsonWebKeySet";

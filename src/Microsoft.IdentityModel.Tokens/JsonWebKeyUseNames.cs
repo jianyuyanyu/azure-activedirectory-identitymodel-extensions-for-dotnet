@@ -7,6 +7,7 @@ namespace Microsoft.IdentityModel.Tokens
     /// Constants for JsonWebKeyUse (sec 4.2)
     /// https://datatracker.ietf.org/doc/html/rfc7517#section-4.2
     /// </summary>
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("ApiDesign", "RS0036:Annotate nullability of public types and members in the declared API", Justification = "Nullability annotations not yet added.")]
     public static class JsonWebKeyUseNames
     {
 #pragma warning disable 1591

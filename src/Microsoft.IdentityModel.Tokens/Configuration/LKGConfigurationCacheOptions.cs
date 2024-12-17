@@ -11,6 +11,7 @@ namespace Microsoft.IdentityModel.Tokens.Configuration
     /// Defines the options which can be used to configure the internal LKG configuration cache.
     /// See <see cref="EventBasedLRUCache{TKey, TValue}"/> for more details.
     /// </summary>
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("ApiDesign", "RS0036:Annotate nullability of public types and members in the declared API", Justification = "Nullability annotations not yet added.")]
     public class LKGConfigurationCacheOptions
     {
         private IEqualityComparer<BaseConfiguration> _baseConfigurationComparer = new BaseConfigurationComparer();

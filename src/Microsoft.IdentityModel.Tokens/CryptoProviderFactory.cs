@@ -12,6 +12,7 @@ namespace Microsoft.IdentityModel.Tokens
     /// <summary>
     /// Creates cryptographic operators by specifying a <see cref="SecurityKey"/>'s and algorithms.
     /// </summary>
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("ApiDesign", "RS0036:Annotate nullability of public types and members in the declared API", Justification = "Nullability annotations not yet added.")]
     public class CryptoProviderFactory
     {
         private static CryptoProviderFactory _default;

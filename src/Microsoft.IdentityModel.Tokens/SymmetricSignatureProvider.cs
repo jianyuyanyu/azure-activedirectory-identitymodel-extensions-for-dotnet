@@ -12,11 +12,13 @@ using System.Diagnostics;
 using System.Runtime.CompilerServices;
 #endif
 
+
 namespace Microsoft.IdentityModel.Tokens
 {
     /// <summary>
     /// Provides signing and verifying operations using a <see cref="SymmetricSecurityKey"/> and specifying an algorithm.
     /// </summary>
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("ApiDesign", "RS0036:Annotate nullability of public types and members in the declared API", Justification = "Nullability annotations not yet added.")]
     public class SymmetricSignatureProvider : SignatureProvider
     {
         private bool _disposed;

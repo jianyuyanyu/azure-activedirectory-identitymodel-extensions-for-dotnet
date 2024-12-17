@@ -13,6 +13,7 @@ namespace Microsoft.IdentityModel.Tokens
     /// Converts a <see cref="SecurityKey"/> into a <see cref="JsonWebKey"/>
     /// Supports: converting to a <see cref="JsonWebKey"/> from one of: <see cref="RsaSecurityKey"/>, <see cref="X509SecurityKey"/>, and <see cref=" SymmetricSecurityKey"/>.
     /// </summary>
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("ApiDesign", "RS0036:Annotate nullability of public types and members in the declared API", Justification = "Nullability annotations not yet added.")]
     public class JsonWebKeyConverter
     {
         /// <summary>

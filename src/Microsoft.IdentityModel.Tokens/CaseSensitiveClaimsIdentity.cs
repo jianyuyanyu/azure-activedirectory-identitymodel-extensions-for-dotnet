@@ -13,6 +13,7 @@ namespace Microsoft.IdentityModel.Tokens
     /// A derived <see cref="ClaimsIdentity"/> where claim retrieval is case-sensitive. The current <see cref="ClaimsIdentity"/> retrieves claims in a case-insensitive manner which is different than querying the underlying <see cref="SecurityToken"/>. The <see cref="CaseSensitiveClaimsIdentity"/> provides consistent retrieval logic between the <see cref="SecurityToken"/> and <see cref="ClaimsIdentity"/>.
     /// </summary>
     [Serializable]
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("ApiDesign", "RS0036:Annotate nullability of public types and members in the declared API", Justification = "Nullability annotations not yet added.")]
     public class CaseSensitiveClaimsIdentity : ClaimsIdentity
     {
         /// <summary>

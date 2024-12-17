@@ -10,6 +10,7 @@ namespace Microsoft.IdentityModel.Tokens
     /// This exception is thrown when an add to the TokenReplayCache fails.
     /// </summary>
     [Serializable]
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("ApiDesign", "RS0036:Annotate nullability of public types and members in the declared API", Justification = "Nullability annotations not yet added.")]
     public class SecurityTokenReplayAddFailedException : SecurityTokenValidationException
     {
         /// <summary>

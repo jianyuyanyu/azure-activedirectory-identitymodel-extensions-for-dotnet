@@ -9,6 +9,7 @@ namespace Microsoft.IdentityModel.Tokens
     /// <summary>
     /// Defines the <see cref="X509Certificate2"/>, algorithm and digest for digital signatures.
     /// </summary>
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("ApiDesign", "RS0036:Annotate nullability of public types and members in the declared API", Justification = "Nullability annotations not yet added.")]
     public class X509SigningCredentials : SigningCredentials
     {
         /// <summary>

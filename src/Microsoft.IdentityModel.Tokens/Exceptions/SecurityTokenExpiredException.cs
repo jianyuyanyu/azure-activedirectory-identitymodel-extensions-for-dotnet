@@ -10,6 +10,7 @@ namespace Microsoft.IdentityModel.Tokens
     /// Throw this exception when a received Security Token has expiration time in the past.
     /// </summary>
     [Serializable]
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("ApiDesign", "RS0036:Annotate nullability of public types and members in the declared API", Justification = "Nullability annotations not yet added.")]
     public class SecurityTokenExpiredException : SecurityTokenValidationException
     {
         [NonSerialized]

@@ -12,6 +12,7 @@ namespace Microsoft.IdentityModel.Tokens
     /// <summary>
     /// Contains some information which used to create a security token.
     /// </summary>
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("ApiDesign", "RS0036:Annotate nullability of public types and members in the declared API", Justification = "Nullability annotations not yet added.")]
     public class SecurityTokenDescriptor
     {
         private List<string> _audiences;

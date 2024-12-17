@@ -9,6 +9,7 @@ namespace Microsoft.IdentityModel.Tokens
     /// JsonWebKey parameter names
     /// see: https://datatracker.ietf.org/doc/html/rfc7517
     /// </summary>
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("ApiDesign", "RS0036:Annotate nullability of public types and members in the declared API", Justification = "Nullability annotations not yet added.")]
     public static class JsonWebKeyParameterNames
     {
 #pragma warning disable 1591
