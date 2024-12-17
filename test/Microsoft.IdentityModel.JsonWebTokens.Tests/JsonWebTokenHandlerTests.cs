@@ -3399,7 +3399,7 @@ namespace Microsoft.IdentityModel.JsonWebTokens.Tests
         }
 
         [Theory, MemberData(nameof(JweDecompressSizeTheoryData))]
-        public void JWEDecompressionSizeTest(JWEDecompressionTheoryData theoryData)
+        public async Task JWEDecompressionSizeTestAsync(JWEDecompressionTheoryData theoryData)
         {
             var context = TestUtilities.WriteHeader($"{this}.JWEDecompressionTest", theoryData);
 
@@ -3413,7 +3413,7 @@ namespace Microsoft.IdentityModel.JsonWebTokens.Tests
                 {
                     throw new ArgumentException("Input size exceeds the maximum allowed size.");
                 }
-                var validationResult = handler.ValidateTokenAsync(theoryData.JWECompressionString, theoryData.ValidationParameters).Result;
+                var validationResult = await handler.ValidateTokenAsync(theoryData.JWECompressionString, theoryData.ValidationParameters);
                 theoryData.ExpectedException.ProcessException(validationResult.Exception, context);
             }
             catch (Exception ex)
