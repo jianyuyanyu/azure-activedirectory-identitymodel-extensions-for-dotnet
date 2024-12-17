@@ -10,7 +10,7 @@ namespace Microsoft.IdentityModel.Tokens.Saml2
     /// <summary>
     /// Represents a SAML2 validation error.
     /// </summary>
-    internal class Saml2ValidationError : ValidationError
+    public class Saml2ValidationError : ValidationError
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Saml2ValidationError"/> class.

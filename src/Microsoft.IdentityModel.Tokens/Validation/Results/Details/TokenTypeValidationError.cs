@@ -10,7 +10,7 @@ namespace Microsoft.IdentityModel.Tokens
     /// <summary>
     /// Represents a token type validation error.
     /// </summary>
-    internal class TokenTypeValidationError : ValidationError
+    public class TokenTypeValidationError : ValidationError
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="TokenTypeValidationError"/> class.

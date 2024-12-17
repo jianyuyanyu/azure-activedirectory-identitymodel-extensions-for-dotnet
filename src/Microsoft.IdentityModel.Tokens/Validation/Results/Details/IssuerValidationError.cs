@@ -10,7 +10,7 @@ namespace Microsoft.IdentityModel.Tokens
     /// <summary>
     /// Represents an issuer validation error.
     /// </summary>
-    internal class IssuerValidationError : ValidationError
+    public class IssuerValidationError : ValidationError
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="IssuerValidationError"/> class.

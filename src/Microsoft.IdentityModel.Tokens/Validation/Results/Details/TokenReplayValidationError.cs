@@ -10,7 +10,7 @@ namespace Microsoft.IdentityModel.Tokens
     /// <summary>
     /// Represents a token replay validation error.
     /// </summary>
-    internal class TokenReplayValidationError : ValidationError
+    public class TokenReplayValidationError : ValidationError
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="IssuerSigningKeyValidationError"/> class.

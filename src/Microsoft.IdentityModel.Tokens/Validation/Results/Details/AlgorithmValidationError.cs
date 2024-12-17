@@ -10,7 +10,7 @@ namespace Microsoft.IdentityModel.Tokens
     /// <summary>
     /// Represents an algorithm validation error.
     /// </summary>
-    internal class AlgorithmValidationError : ValidationError
+    public class AlgorithmValidationError : ValidationError
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="AlgorithmValidationError"/> class.

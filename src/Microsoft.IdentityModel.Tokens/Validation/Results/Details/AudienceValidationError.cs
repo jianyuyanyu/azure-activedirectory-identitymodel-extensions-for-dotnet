@@ -11,7 +11,7 @@ namespace Microsoft.IdentityModel.Tokens
     /// <summary>
     /// Represents an audience validation error.
     /// </summary>
-    internal class AudienceValidationError : ValidationError
+    public class AudienceValidationError : ValidationError
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="IssuerSigningKeyValidationError"/> class.

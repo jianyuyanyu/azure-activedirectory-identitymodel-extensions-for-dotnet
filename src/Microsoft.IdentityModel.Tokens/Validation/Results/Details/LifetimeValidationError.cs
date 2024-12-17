@@ -10,7 +10,7 @@ namespace Microsoft.IdentityModel.Tokens
     /// <summary>
     /// Represents a lifetime validation error.
     /// </summary>
-    internal class LifetimeValidationError : ValidationError
+    public class LifetimeValidationError : ValidationError
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="LifetimeValidationError"/> class.
