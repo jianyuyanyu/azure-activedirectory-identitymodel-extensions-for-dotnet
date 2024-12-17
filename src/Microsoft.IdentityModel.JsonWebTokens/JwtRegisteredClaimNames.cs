@@ -11,6 +11,7 @@ namespace Microsoft.IdentityModel.JsonWebTokens
     /// See: <see href="https://openid.net/specs/openid-connect-core-1_0.html#IDToken"/>.
     /// See: <see href="https://openid.net/specs/openid-connect-core-1_0.html#StandardClaims"/>.
     /// </summary>
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("ApiDesign", "RS0036:Annotate nullability of public types and members in the declared API", Justification = "Nullability annotations not yet added.")]
     public struct JwtRegisteredClaimNames
     {
         // Please keep in alphabetical order

@@ -8,6 +8,7 @@ namespace Microsoft.IdentityModel.JsonWebTokens
     /// <summary>
     /// Defines JOSE header parameter names. See: <see href="https://datatracker.ietf.org/doc/html/rfc7519#section-5"/>.
     /// </summary>
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("ApiDesign", "RS0036:Annotate nullability of public types and members in the declared API", Justification = "Nullability annotations not yet added.")]
     public struct JwtHeaderParameterNames
     {
         // Please keep this alphabetical order

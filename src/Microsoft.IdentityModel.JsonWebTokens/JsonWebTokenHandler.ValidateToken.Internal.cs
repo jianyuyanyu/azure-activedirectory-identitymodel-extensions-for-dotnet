@@ -77,7 +77,7 @@ namespace Microsoft.IdentityModel.JsonWebTokens
         }
 
         /// <inheritdoc/>
-        internal async Task<ValidationResult<ValidatedToken>> ValidateTokenAsync(
+        public async Task<ValidationResult<ValidatedToken>> ValidateTokenAsync(
             SecurityToken token,
             ValidationParameters validationParameters,
             CallContext callContext,

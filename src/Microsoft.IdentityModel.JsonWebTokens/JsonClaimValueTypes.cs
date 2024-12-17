@@ -8,6 +8,7 @@ namespace Microsoft.IdentityModel.JsonWebTokens
     /// <summary>
     /// Constants that indicate how the <see cref="Claim.Value"/> should be evaluated.
     /// </summary>
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("ApiDesign", "RS0036:Annotate nullability of public types and members in the declared API", Justification = "Nullability annotations not yet added.")]
     public static class JsonClaimValueTypes
     {
         /// <summary>

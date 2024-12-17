@@ -15,6 +15,7 @@ namespace Microsoft.IdentityModel.JsonWebTokens
     /// <summary>
     /// A <see cref="SecurityToken"/> designed for representing a JSON Web Token (JWT).
     /// </summary>
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("ApiDesign", "RS0036:Annotate nullability of public types and members in the declared API", Justification = "Nullability annotations not yet added.")]
     public partial class JsonWebToken : SecurityToken
     {
         internal const string ClassName = "Microsoft.IdentityModel.JsonWebTokens.JsonWebToken";

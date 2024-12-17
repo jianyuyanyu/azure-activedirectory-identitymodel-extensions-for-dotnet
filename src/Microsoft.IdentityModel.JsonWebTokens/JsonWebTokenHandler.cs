@@ -16,6 +16,7 @@ namespace Microsoft.IdentityModel.JsonWebTokens
     /// A <see cref="SecurityTokenHandler"/> designed for creating and validating JSON Web Tokens.
     /// See: <see href="https://datatracker.ietf.org/doc/html/rfc7519"/> and <see href="https://www.rfc-editor.org/info/rfc7515"/>.
     /// </summary>
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("ApiDesign", "RS0036:Annotate nullability of public types and members in the declared API", Justification = "Nullability annotations not yet added.")]
     public partial class JsonWebTokenHandler : TokenHandler
     {
         private IDictionary<string, string> _inboundClaimTypeMap;

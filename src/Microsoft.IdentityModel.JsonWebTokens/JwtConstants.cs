@@ -6,6 +6,7 @@ namespace Microsoft.IdentityModel.JsonWebTokens
     /// <summary>
     /// Constants for JSON Web Tokens.
     /// </summary>
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("ApiDesign", "RS0036:Annotate nullability of public types and members in the declared API", Justification = "Nullability annotations not yet added.")]
     public static class JwtConstants
     {
         /// <summary>
