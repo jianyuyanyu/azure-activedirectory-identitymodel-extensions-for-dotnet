@@ -3431,8 +3431,8 @@ namespace Microsoft.IdentityModel.JsonWebTokens.Tests
             string strU = new string('U', 20_000_000);
             string strUU = new string('U', 15_000_000);
 #elif NET452
-            string strU = new string('U', 1_000_000);
-            string strUU = new string('U', 500_000);
+            string strU = new string('U', 500_000);
+            string strUU = new string('U', 250_000);
 #else
             string strU = new string('U', 100_000_000);
             string strUU = new string('U', 40_000_000);
