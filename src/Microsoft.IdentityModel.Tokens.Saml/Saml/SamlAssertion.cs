@@ -14,6 +14,7 @@ namespace Microsoft.IdentityModel.Tokens.Saml
     /// <summary>
     /// Represents the Assertion element specified in [Saml, 2.3.2].
     /// </summary>
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("ApiDesign", "RS0036:Annotate nullability of public types and members in the declared API", Justification = "Nullability annotations not yet added.")]
     public class SamlAssertion
     {
         private string _assertionId;

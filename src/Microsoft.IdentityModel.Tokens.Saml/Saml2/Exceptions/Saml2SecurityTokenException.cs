@@ -10,6 +10,7 @@ namespace Microsoft.IdentityModel.Tokens.Saml2
     /// This exception is thrown when a security is missing an ExpirationTime.
     /// </summary>
     [Serializable]
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("ApiDesign", "RS0036:Annotate nullability of public types and members in the declared API", Justification = "Nullability annotations not yet added.")]
     public class Saml2SecurityTokenException : SecurityTokenException
     {
         /// <summary>

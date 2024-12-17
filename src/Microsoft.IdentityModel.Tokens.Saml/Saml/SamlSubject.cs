@@ -17,6 +17,7 @@ namespace Microsoft.IdentityModel.Tokens.Saml
     /// If the NameId is null and the SubjectConfirmations collection is empty,
     /// an InvalidOperationException will be thrown during serialization.
     /// </remarks>
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("ApiDesign", "RS0036:Annotate nullability of public types and members in the declared API", Justification = "Nullability annotations not yet added.")]
     public class SamlSubject
     {
         // Saml SubjectConfirmation parts.

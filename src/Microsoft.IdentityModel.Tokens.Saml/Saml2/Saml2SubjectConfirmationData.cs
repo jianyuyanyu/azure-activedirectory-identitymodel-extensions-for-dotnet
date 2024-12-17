@@ -13,6 +13,7 @@ namespace Microsoft.IdentityModel.Tokens.Saml2
     /// Represents the SubjectConfirmationData element and the associated 
     /// KeyInfoConfirmationDataType defined in [Saml2Core, 2.4.1.2-2.4.1.3].
     /// </summary>
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("ApiDesign", "RS0036:Annotate nullability of public types and members in the declared API", Justification = "Nullability annotations not yet added.")]
     public class Saml2SubjectConfirmationData
     {
         private string _address;

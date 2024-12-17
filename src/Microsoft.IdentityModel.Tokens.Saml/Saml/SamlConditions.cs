@@ -9,6 +9,7 @@ namespace Microsoft.IdentityModel.Tokens.Saml
     /// <summary>
     /// Represents the Conditions element specified in [Saml, 2.3.2.1].
     /// </summary>
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("ApiDesign", "RS0036:Annotate nullability of public types and members in the declared API", Justification = "Nullability annotations not yet added.")]
     public class SamlConditions
     {
         internal SamlConditions()

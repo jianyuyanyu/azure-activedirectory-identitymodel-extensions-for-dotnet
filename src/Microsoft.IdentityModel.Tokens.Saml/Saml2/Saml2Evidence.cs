@@ -16,6 +16,7 @@ namespace Microsoft.IdentityModel.Tokens.Saml2
     /// authority relied on in issuing the authorization decision. 
     /// [Saml2Core, 2.7.4.3]
     /// </remarks>
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("ApiDesign", "RS0036:Annotate nullability of public types and members in the declared API", Justification = "Nullability annotations not yet added.")]
     public class Saml2Evidence
     {
         private readonly List<Saml2Id> _assertionIdReferences = new List<Saml2Id>();

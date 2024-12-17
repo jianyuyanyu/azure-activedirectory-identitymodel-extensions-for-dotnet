@@ -13,6 +13,7 @@ namespace Microsoft.IdentityModel.Tokens.Saml2
     /// <summary>
     /// Reads and writes a <see cref="Saml2Assertion"/> or <see cref="Saml2SecurityToken"/>
     /// </summary>
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("ApiDesign", "RS0036:Annotate nullability of public types and members in the declared API", Justification = "Nullability annotations not yet added.")]
     public class Saml2Serializer
     {
         private DSigSerializer _dsigSerializer = DSigSerializer.Default;

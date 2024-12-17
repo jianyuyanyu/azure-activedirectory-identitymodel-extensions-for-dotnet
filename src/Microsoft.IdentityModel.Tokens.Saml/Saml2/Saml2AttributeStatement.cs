@@ -11,6 +11,7 @@ namespace Microsoft.IdentityModel.Tokens.Saml2
     /// Represents the AttributeStatement element specified in [Saml2Core, 2.7.3].
     /// see: http://docs.oasis-open.org/security/saml/v2.0/saml-core-2.0-os.pdf
     /// </summary>
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("ApiDesign", "RS0036:Annotate nullability of public types and members in the declared API", Justification = "Nullability annotations not yet added.")]
     public class Saml2AttributeStatement : Saml2Statement
     {
         /// <summary>

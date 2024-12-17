@@ -9,6 +9,7 @@ namespace Microsoft.IdentityModel.Tokens.Saml2
     /// <summary>
     /// Represents the SubjectConfirmation element specified in [Saml2Core, 2.4.1.1]. 
     /// </summary>
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("ApiDesign", "RS0036:Annotate nullability of public types and members in the declared API", Justification = "Nullability annotations not yet added.")]
     public class Saml2SubjectConfirmation
     {
         private Uri _method;

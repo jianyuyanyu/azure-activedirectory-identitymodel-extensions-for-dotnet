@@ -13,6 +13,7 @@ namespace Microsoft.IdentityModel.Tokens.Saml2
     /// This element is entirely advisory, since both of these fields are quite 
     /// easily "spoofed". [Saml2Core, 2.7.2.1]
     /// </remarks>
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("ApiDesign", "RS0036:Annotate nullability of public types and members in the declared API", Justification = "Nullability annotations not yet added.")]
     public class Saml2SubjectLocality
     {
         private string _address;

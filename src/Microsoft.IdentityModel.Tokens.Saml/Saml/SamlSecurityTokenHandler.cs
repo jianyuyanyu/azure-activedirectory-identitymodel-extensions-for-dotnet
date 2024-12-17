@@ -21,7 +21,7 @@ namespace Microsoft.IdentityModel.Tokens.Saml
     /// A <see cref="SecurityTokenHandler"/> designed for creating and validating Saml Tokens,
     /// which supports validating tokens passed as strings using <see cref="TokenValidationParameters"/>.
     /// </summary>
-    ///
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("ApiDesign", "RS0036:Annotate nullability of public types and members in the declared API", Justification = "Nullability annotations not yet added.")]
     public partial class SamlSecurityTokenHandler : SecurityTokenHandler
     {
         internal const string Actor = "Actor";

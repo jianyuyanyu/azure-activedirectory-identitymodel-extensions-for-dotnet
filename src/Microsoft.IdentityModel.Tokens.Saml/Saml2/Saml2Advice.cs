@@ -15,6 +15,7 @@ namespace Microsoft.IdentityModel.Tokens.Saml2
     /// This information MAY be ignored by applications without affecting either
     /// the semantics or the validity of the assertion. [Saml2Core, 2.6.1]
     /// </remarks>
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("ApiDesign", "RS0036:Annotate nullability of public types and members in the declared API", Justification = "Nullability annotations not yet added.")]
     public class Saml2Advice
     {
         /// <summary>

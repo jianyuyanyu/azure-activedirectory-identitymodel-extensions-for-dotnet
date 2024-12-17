@@ -13,6 +13,7 @@ namespace Microsoft.IdentityModel.Tokens.Saml
     /// Contains one or more assertions or assertion references that the SAML
     /// authority relied on in issuing the authorization decision.
     /// </remarks>
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("ApiDesign", "RS0036:Annotate nullability of public types and members in the declared API", Justification = "Nullability annotations not yet added.")]
     public class SamlEvidence
     {
         internal SamlEvidence()

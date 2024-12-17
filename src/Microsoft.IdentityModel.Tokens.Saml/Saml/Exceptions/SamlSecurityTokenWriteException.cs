@@ -10,6 +10,7 @@ namespace Microsoft.IdentityModel.Tokens.Saml
     /// This exception is thrown when reading a <see cref="SamlSecurityToken"/>.
     /// </summary>
     [Serializable]
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("ApiDesign", "RS0036:Annotate nullability of public types and members in the declared API", Justification = "Nullability annotations not yet added.")]
     public class SamlSecurityTokenWriteException : SamlSecurityTokenException
     {
         /// <summary>

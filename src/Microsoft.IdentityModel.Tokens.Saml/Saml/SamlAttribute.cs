@@ -12,6 +12,7 @@ namespace Microsoft.IdentityModel.Tokens.Saml
     /// <summary>
     /// Represents the Attribute element.
     /// </summary>
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("ApiDesign", "RS0036:Annotate nullability of public types and members in the declared API", Justification = "Nullability annotations not yet added.")]
     public class SamlAttribute
     {
         private string _attributeValueXsiType = ClaimValueTypes.String;

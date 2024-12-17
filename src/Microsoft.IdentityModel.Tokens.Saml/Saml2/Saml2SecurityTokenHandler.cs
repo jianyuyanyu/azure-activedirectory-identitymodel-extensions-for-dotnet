@@ -22,6 +22,7 @@ namespace Microsoft.IdentityModel.Tokens.Saml2
     /// <summary>
     /// A <see cref="SecurityTokenHandler"/> designed for creating and validating Saml2 Tokens. See: http://docs.oasis-open.org/security/saml/v2.0/saml-core-2.0-os.pdf
     /// </summary>
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("ApiDesign", "RS0036:Annotate nullability of public types and members in the declared API", Justification = "Nullability annotations not yet added.")]
     public partial class Saml2SecurityTokenHandler : SecurityTokenHandler
     {
         private const string _actor = "Actor";

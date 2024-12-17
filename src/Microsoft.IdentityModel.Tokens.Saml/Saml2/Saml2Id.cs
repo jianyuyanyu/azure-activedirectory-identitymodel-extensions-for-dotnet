@@ -16,6 +16,7 @@ namespace Microsoft.IdentityModel.Tokens.Saml2
     /// and must fit the NCName xml schema definition, which is to say that
     /// it must begin with a letter or underscore. 
     /// </details>
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("ApiDesign", "RS0036:Annotate nullability of public types and members in the declared API", Justification = "Nullability annotations not yet added.")]
     public class Saml2Id
     {
         /// <summary>

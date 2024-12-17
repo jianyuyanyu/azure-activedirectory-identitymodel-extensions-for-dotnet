@@ -10,6 +10,7 @@ namespace Microsoft.IdentityModel.Tokens.Saml
     /// Represents the Action element specified in [Saml, 2.4.5.1].
     /// see: https://www.oasis-open.org/committees/download.php/3406/oasis-sstc-saml-core-1.1.pdf
     /// </summary>
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("ApiDesign", "RS0036:Annotate nullability of public types and members in the declared API", Justification = "Nullability annotations not yet added.")]
     public class SamlAction
     {
         private Uri _namespace;
