@@ -7,9 +7,21 @@ using System;
 #nullable enable
 namespace Microsoft.IdentityModel.Tokens
 {
+    /// <summary>
+    /// Represents an issuer signing key validation error.
+    /// </summary>
     internal class IssuerSigningKeyValidationError : ValidationError
     {
-        internal IssuerSigningKeyValidationError(
+        /// <summary>
+        /// Initializes a new instance of the <see cref="IssuerSigningKeyValidationError"/> class.
+        /// </summary>
+        /// <param name="messageDetail" /> contains information about the exception that is used to generate the exception message.
+        /// <param name="validationFailureType"/> is the type of validation failure that occurred.
+        /// <param name="exceptionType"/> is the type of exception that occurred.
+        /// <param name="stackFrame"/> is the stack frame where the exception occurred.
+        /// <param name="invalidSigningKey"/> is the signing key that could not be validated.
+        /// <param name="innerException"/> is the inner exception that occurred.
+        public IssuerSigningKeyValidationError(
             MessageDetail messageDetail,
             ValidationFailureType validationFailureType,
             Type exceptionType,
@@ -21,7 +33,11 @@ namespace Microsoft.IdentityModel.Tokens
             InvalidSigningKey = invalidSigningKey;
         }
 
-        internal override Exception GetException()
+        /// <summary>
+        /// Creates an instance of an <see cref="Exception"/> using <see cref="ValidationError"/>
+        /// </summary>
+        /// <returns>An instance of an Exception.</returns>
+        public override Exception GetException()
         {
             if (ExceptionType == typeof(SecurityTokenInvalidSigningKeyException))
             {
@@ -37,13 +53,22 @@ namespace Microsoft.IdentityModel.Tokens
             return base.GetException();
         }
 
-        internal static new IssuerSigningKeyValidationError NullParameter(string parameterName, StackFrame stackFrame) => new(
+        /// <summary>
+        /// Creates a new instance of <see cref="IssuerSigningKeyValidationError"/> representing a null parameter.
+        /// </summary>
+        /// <param name="parameterName">The name of the parameter.</param>
+        /// <param name="stackFrame">The stack frame where the error occurred.</param>
+        /// <returns>A new <see cref="IssuerSigningKeyValidationError"/>.</returns>
+        public static new IssuerSigningKeyValidationError NullParameter(string parameterName, StackFrame stackFrame) => new(
             MessageDetail.NullParameter(parameterName),
             ValidationFailureType.NullArgument,
             typeof(SecurityTokenArgumentNullException),
             stackFrame,
             null); // InvalidSigningKey
 
+        /// <summary>
+        /// The signing key that was found invalid.
+        /// </summary>
         protected SecurityKey? InvalidSigningKey { get; }
     }
 }

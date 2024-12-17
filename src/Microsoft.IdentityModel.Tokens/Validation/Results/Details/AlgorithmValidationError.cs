@@ -7,8 +7,20 @@ using System.Diagnostics;
 #nullable enable
 namespace Microsoft.IdentityModel.Tokens
 {
+    /// <summary>
+    /// Represents an algorithm validation error.
+    /// </summary>
     internal class AlgorithmValidationError : ValidationError
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AlgorithmValidationError"/> class.
+        /// </summary>
+        /// <param name="messageDetail" /> contains information about the exception that is used to generate the exception message.
+        /// <param name="validationFailureType"/> is the type of validation failure that occurred.
+        /// <param name="exceptionType"/> is the type of exception that occurred.
+        /// <param name="stackFrame"/> is the stack frame where the exception occurred.
+        /// <param name="invalidAlgorithm"/> is the algorithm that could not be validated.
+        /// <param name="innerException"/> is the inner exception that occurred.
         public AlgorithmValidationError(
             MessageDetail messageDetail,
             ValidationFailureType validationFailureType,
@@ -21,7 +33,11 @@ namespace Microsoft.IdentityModel.Tokens
             InvalidAlgorithm = invalidAlgorithm;
         }
 
-        internal override Exception GetException()
+        /// <summary>
+        /// Creates an instance of an <see cref="Exception"/> using <see cref="ValidationError"/>
+        /// </summary>
+        /// <returns>An instance of an Exception.</returns>
+        public override Exception GetException()
         {
             if (ExceptionType == typeof(SecurityTokenInvalidAlgorithmException))
             {
@@ -37,7 +53,10 @@ namespace Microsoft.IdentityModel.Tokens
             return base.GetException();
         }
 
-        protected string? InvalidAlgorithm { get; }
+        /// <summary>
+        /// The algorithm that could not be validated.
+        /// </summary>
+        public string? InvalidAlgorithm { get; }
     }
 }
 #nullable restore
