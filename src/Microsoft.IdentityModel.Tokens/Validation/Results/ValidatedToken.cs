@@ -28,6 +28,7 @@ namespace Microsoft.IdentityModel.Tokens
         /// <summary>
         /// Logs the validation result.
         /// </summary>
+        [CLSCompliant(false)]
         public void Log(ILogger logger) => Logger.TokenValidationSucceeded(
                 logger,
                 ValidatedAudience ?? "none",
