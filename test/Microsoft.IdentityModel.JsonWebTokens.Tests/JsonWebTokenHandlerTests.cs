@@ -3408,11 +3408,6 @@ namespace Microsoft.IdentityModel.JsonWebTokens.Tests
                 var handler = new JsonWebTokenHandler();
                 CompressionProviderFactory.Default = theoryData.CompressionProviderFactory;
 
-                // Add input size check here
-                if (theoryData.JWECompressionString.Length > 5000000) // Example size limit
-                {
-                    throw new ArgumentException("Input size exceeds the maximum allowed size.");
-                }
                 var validationResult = await handler.ValidateTokenAsync(theoryData.JWECompressionString, theoryData.ValidationParameters);
                 theoryData.ExpectedException.ProcessException(validationResult.Exception, context);
             }
@@ -3434,11 +3429,11 @@ namespace Microsoft.IdentityModel.JsonWebTokens.Tests
 
             TheoryData<JWEDecompressionTheoryData> theoryData = new TheoryData<JWEDecompressionTheoryData>();
 #if NETCOREAPP2_1
-            string strU = new string('U', 2000000);
-            string strUU = new string('U', 1500000);
+            string strU = new string('U', 20_000_000);
+            string strUU = new string('U', 15_000_000);
 #else
-            string strU = new string('U', 4000000);
-            string strUU = new string('U', 3000000);
+            string strU = new string('U', 100_000_000);
+            string strUU = new string('U', 40_000_000);
 #endif
 
             string payload = $@"{{""U"":""{strU}"", ""UU"":""{strUU}""}}";
