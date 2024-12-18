@@ -3416,6 +3416,12 @@ namespace Microsoft.IdentityModel.JsonWebTokens.Tests
                 context.AddDiff($"Caught OutOfMemoryException: {ex.Message}");
                 theoryData.ExpectedException.ProcessNoException(context);
             }
+            catch (SecurityTokenCompressionFailedException ex) when (ex.InnerException is OutOfMemoryException)
+            {
+                // Log the OutOfMemoryException wrapped in SecurityTokenCompressionFailedException and mark the test as passed
+                context.AddDiff($"Caught SecurityTokenCompressionFailedException with OutOfMemoryException: {ex.InnerException.Message}");
+                theoryData.ExpectedException.ProcessNoException(context);
+            }
             catch (Exception ex)
             {
                 theoryData.ExpectedException.ProcessException(ex, context);
@@ -3440,12 +3446,12 @@ namespace Microsoft.IdentityModel.JsonWebTokens.Tests
             TokenValidationParameters validationParameters = new TokenValidationParameters { TokenDecryptionKey = key };
 
             TheoryData<JWEDecompressionTheoryData> theoryData = new TheoryData<JWEDecompressionTheoryData>();
-#if NET452
-            string strU = new string('U', 500_000);
-            string strUU = new string('U', 250_000);
-#else
+#if NETCOREAPP2_1
             string strU = new string('U', 20_000_000);
             string strUU = new string('U', 15_000_000);
+#else
+            string strU = new string('U', 100_000_000);
+            string strUU = new string('U', 40_000_000);
 #endif
 
             string payload = $@"{{""U"":""{strU}"", ""UU"":""{strUU}""}}";
@@ -3463,7 +3469,6 @@ namespace Microsoft.IdentityModel.JsonWebTokens.Tests
                     typeof(SecurityTokenDecompressionFailedException))
             });
 
-#if !NET452
             strUU = new string('U', 50_000_000);
             payload = $@"{{""U"":""{strU}"", ""UU"":""{strUU}""}}";
 
@@ -3478,7 +3483,6 @@ namespace Microsoft.IdentityModel.JsonWebTokens.Tests
                     typeof(ArgumentException),
                     "IDX10209:")
             });
-#endif
 
             return theoryData;
         }
