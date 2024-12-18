@@ -3420,6 +3420,13 @@ namespace Microsoft.IdentityModel.JsonWebTokens.Tests
             {
                 theoryData.ExpectedException.ProcessException(ex, context);
             }
+            finally
+            {
+                // Force garbage collection to free up memory
+                GC.Collect();
+                GC.WaitForPendingFinalizers();
+                GC.Collect();
+            }
 
             TestUtilities.AssertFailIfErrors(context);
         }
