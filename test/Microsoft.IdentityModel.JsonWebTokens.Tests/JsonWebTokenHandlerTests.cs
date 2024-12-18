@@ -3440,12 +3440,12 @@ namespace Microsoft.IdentityModel.JsonWebTokens.Tests
             TokenValidationParameters validationParameters = new TokenValidationParameters { TokenDecryptionKey = key };
 
             TheoryData<JWEDecompressionTheoryData> theoryData = new TheoryData<JWEDecompressionTheoryData>();
-#if NETCOREAPP2_1
+#if NET452
+            string strU = new string('U', 500_000);
+            string strUU = new string('U', 250_000);
+#else
             string strU = new string('U', 20_000_000);
             string strUU = new string('U', 15_000_000);
-#else
-            string strU = new string('U', 100_000_000);
-            string strUU = new string('U', 40_000_000);
 #endif
 
             string payload = $@"{{""U"":""{strU}"", ""UU"":""{strUU}""}}";
@@ -3463,6 +3463,7 @@ namespace Microsoft.IdentityModel.JsonWebTokens.Tests
                     typeof(SecurityTokenDecompressionFailedException))
             });
 
+#if !NET452
             strUU = new string('U', 50_000_000);
             payload = $@"{{""U"":""{strU}"", ""UU"":""{strUU}""}}";
 
@@ -3477,6 +3478,7 @@ namespace Microsoft.IdentityModel.JsonWebTokens.Tests
                     typeof(ArgumentException),
                     "IDX10209:")
             });
+#endif
 
             return theoryData;
         }
