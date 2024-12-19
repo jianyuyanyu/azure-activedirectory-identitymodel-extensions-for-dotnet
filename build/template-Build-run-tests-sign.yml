@@ -213,11 +213,11 @@ steps:
     ArtifactName: '$(Build.BuildNumber)-nuget-package'
 
  - task: BuildQualityChecks@9
-    displayName: 'Check Warnings'
-    inputs:
-      checkWarnings: true
-      warningFailOption: 'build'
-      showStatistics: true
+  displayName: 'Check Warnings'
+  inputs:
+    checkWarnings: true
+    warningFailOption: 'build'
+    showStatistics: true
 
 - task: mspremier.PostBuildCleanup.PostBuildCleanup-task.PostBuildCleanup@3
   displayName: 'Clean Agent Directories'
