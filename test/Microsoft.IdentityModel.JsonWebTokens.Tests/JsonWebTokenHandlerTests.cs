@@ -25,6 +25,7 @@ using Xunit;
 
 namespace Microsoft.IdentityModel.JsonWebTokens.Tests
 {
+    [Collection("NonParallelCollection")]
     public class JsonWebTokenHandlerTests
     {
 
