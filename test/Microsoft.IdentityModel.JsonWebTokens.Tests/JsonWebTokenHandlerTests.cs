@@ -3398,6 +3398,7 @@ namespace Microsoft.IdentityModel.JsonWebTokens.Tests
             }
         }
 
+#if !NET452
         [Theory, MemberData(nameof(JweDecompressSizeTheoryData))]
         public void JWEDecompressionSizeTest(JWEDecompressionTheoryData theoryData)
         {
@@ -3436,6 +3437,7 @@ namespace Microsoft.IdentityModel.JsonWebTokens.Tests
 
             TestUtilities.AssertFailIfErrors(context);
         }
+#endif
 
         public static TheoryData<JWEDecompressionTheoryData> JweDecompressSizeTheoryData()
         {
