@@ -3398,7 +3398,6 @@ namespace Microsoft.IdentityModel.JsonWebTokens.Tests
             }
         }
 
-#if !NET452
         [Theory, MemberData(nameof(JweDecompressSizeTheoryData))]
         public void JWEDecompressionSizeTest(JWEDecompressionTheoryData theoryData)
         {
@@ -3406,10 +3405,18 @@ namespace Microsoft.IdentityModel.JsonWebTokens.Tests
 
             try
             {
+                // Log initial memory usage
+                long initialMemory = GC.GetTotalMemory(forceFullCollection: true);
+                context.AddDiff($"Initial memory usage: {initialMemory} bytes");
+
                 var handler = new JsonWebTokenHandler();
                 CompressionProviderFactory.Default = theoryData.CompressionProviderFactory;
                 var validationResult = handler.ValidateTokenAsync(theoryData.JWECompressionString, theoryData.ValidationParameters).Result;
                 theoryData.ExpectedException.ProcessException(validationResult.Exception, context);
+
+                // Log final memory usage
+                long finalMemory = GC.GetTotalMemory(forceFullCollection: true);
+                context.AddDiff($"Final memory usage: {finalMemory} bytes");
             }
             catch (OutOfMemoryException ex)
             {
@@ -3433,11 +3440,14 @@ namespace Microsoft.IdentityModel.JsonWebTokens.Tests
                 GC.Collect();
                 GC.WaitForPendingFinalizers();
                 GC.Collect();
+
+                // Log memory usage after garbage collection
+                long postGcMemory = GC.GetTotalMemory(forceFullCollection: true);
+                context.AddDiff($"Memory usage after GC: {postGcMemory} bytes");
             }
 
             TestUtilities.AssertFailIfErrors(context);
         }
-#endif
 
         public static TheoryData<JWEDecompressionTheoryData> JweDecompressSizeTheoryData()
         {
