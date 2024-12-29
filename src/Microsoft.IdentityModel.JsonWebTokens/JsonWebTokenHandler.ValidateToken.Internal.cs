@@ -34,7 +34,7 @@ namespace Microsoft.IdentityModel.JsonWebTokens
         /// <exception cref="ArgumentException">Returned if 'token.Length' is greater than <see cref="TokenHandler.MaximumTokenSizeInBytes"/>.</exception>
         /// <exception cref="SecurityTokenMalformedException">Returned if <paramref name="token"/> is not a valid <see cref="JsonWebToken"/>, <see cref="ReadToken(string, CallContext)"/></exception>
         /// <exception cref="SecurityTokenMalformedException">Returned if the validationParameters.TokenReader delegate is not able to parse/read the token as a valid <see cref="JsonWebToken"/>, <see cref="ReadToken(string, CallContext)"/></exception>
-        internal async Task<ValidationResult<ValidatedToken>> ValidateTokenAsync(
+        internal override async Task<ValidationResult<ValidatedToken>> ValidateTokenAsync(
             string token,
             ValidationParameters validationParameters,
             CallContext callContext,
@@ -91,7 +91,7 @@ namespace Microsoft.IdentityModel.JsonWebTokens
         }
 
         /// <inheritdoc/>
-        internal async Task<ValidationResult<ValidatedToken>> ValidateTokenAsync(
+        internal override async Task<ValidationResult<ValidatedToken>> ValidateTokenAsync(
             SecurityToken token,
             ValidationParameters validationParameters,
             CallContext callContext,
@@ -420,7 +420,7 @@ namespace Microsoft.IdentityModel.JsonWebTokens
             try
             {
                 issuerSigningKeyValidationResult = validationParameters.IssuerSigningKeyValidator(
-                    jsonWebToken.SigningKey, jsonWebToken, validationParameters, configuration, callContext);
+                    jsonWebToken.SigningKey, jsonWebToken, validationParameters, callContext);
 
                 if (!issuerSigningKeyValidationResult.IsValid)
                     return issuerSigningKeyValidationResult.UnwrapError().AddCurrentStackFrame();

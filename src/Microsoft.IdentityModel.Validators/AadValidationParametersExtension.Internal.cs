@@ -14,59 +14,62 @@ namespace Microsoft.IdentityModel.Validators
     /// <summary>
     /// A generic class for additional validation checks on <see cref="SecurityToken"/> issued by the Microsoft identity platform (AAD).
     /// </summary>
-    public static class AadTokenValidationParametersExtension
+    internal static class AadValidationParametersExtension
     {
         /// <summary>
         /// Enables validation of the cloud instance of the Microsoft Entra ID token signing keys.
         /// </summary>
-        /// <param name="tokenValidationParameters">The <see cref="TokenValidationParameters"/> that are used to validate the token.</param>
-        public static void EnableEntraIdSigningKeyCloudInstanceValidation(this TokenValidationParameters tokenValidationParameters)
+        /// <param name="validationParameters">The <see cref="TokenValidationParameters"/> that are used to validate the token.</param>
+        internal static void EnableEntraIdSigningKeyCloudInstanceValidation(this ValidationParameters validationParameters)
         {
-            if (tokenValidationParameters == null)
-                throw LogHelper.LogArgumentNullException(nameof(tokenValidationParameters));
+            if (validationParameters == null)
+                throw LogHelper.LogArgumentNullException(nameof(validationParameters));
 
-            IssuerSigningKeyValidatorUsingConfiguration userProvidedIssuerSigningKeyValidatorUsingConfiguration = tokenValidationParameters.IssuerSigningKeyValidatorUsingConfiguration;
-            IssuerSigningKeyValidator userProvidedIssuerSigningKeyValidator = tokenValidationParameters.IssuerSigningKeyValidator;
+            IssuerSigningKeyValidationDelegate issuerSigningKeyValidationDelegate = validationParameters.IssuerSigningKeyValidator;
 
-            tokenValidationParameters.IssuerSigningKeyValidatorUsingConfiguration = (securityKey, securityToken, tvp, config) =>
+            IssuerSigningKeyValidationDelegate issuerSigningKeyValidationDelegate1 = (securityKey, securityToken, validationParameters, callContext) =>
             {
-                ValidateSigningKeyCloudInstance(securityKey, config);
+                // TODO remove GetAwaiter
+                BaseConfiguration configuration = null;
+                if (validationParameters.ConfigurationManager != null)
+                    configuration = validationParameters.ConfigurationManager.GetBaseConfigurationAsync(System.Threading.CancellationToken.None).ConfigureAwait(false).GetAwaiter().GetResult();
+
+                ValidateSigningKeyCloudInstance(securityKey, configuration);
 
                 // preserve and run provided logic
-                if (userProvidedIssuerSigningKeyValidatorUsingConfiguration != null)
-                    return userProvidedIssuerSigningKeyValidatorUsingConfiguration(securityKey, securityToken, tvp, config);
+                if (issuerSigningKeyValidationDelegate != null)
+                    return issuerSigningKeyValidationDelegate(securityKey, securityToken, validationParameters, callContext);
 
-                if (userProvidedIssuerSigningKeyValidator != null)
-                    return userProvidedIssuerSigningKeyValidator(securityKey, securityToken, tvp);
-
-                return true;
+                return new ValidatedSigningKeyLifetime(DateTime.UtcNow, DateTime.UtcNow, DateTime.UtcNow);
             };
+
+            validationParameters.IssuerSigningKeyValidator = issuerSigningKeyValidationDelegate1;
         }
 
         /// <summary>
         /// Enables the validation of the issuer of the signing keys used by the Microsoft identity platform (AAD) against the issuer of the token.
         /// </summary>
-        /// <param name="tokenValidationParameters">The <see cref="TokenValidationParameters"/> that are used to validate the token.</param>
-        public static void EnableAadSigningKeyIssuerValidation(this TokenValidationParameters tokenValidationParameters)
+        /// <param name="validationParameters">The <see cref="TokenValidationParameters"/> that are used to validate the token.</param>
+        internal static void EnableAadSigningKeyIssuerValidation(this ValidationParameters validationParameters)
         {
-            if (tokenValidationParameters == null)
-                throw LogHelper.LogArgumentNullException(nameof(tokenValidationParameters));
+            if (validationParameters == null)
+                throw LogHelper.LogArgumentNullException(nameof(validationParameters));
 
-            IssuerSigningKeyValidatorUsingConfiguration userProvidedIssuerSigningKeyValidatorUsingConfiguration = tokenValidationParameters.IssuerSigningKeyValidatorUsingConfiguration;
-            IssuerSigningKeyValidator userProvidedIssuerSigningKeyValidator = tokenValidationParameters.IssuerSigningKeyValidator;
+            IssuerSigningKeyValidationDelegate issuerSigningKeyValidationDelegate = validationParameters.IssuerSigningKeyValidator;
 
-            tokenValidationParameters.IssuerSigningKeyValidatorUsingConfiguration = (securityKey, securityToken, tvp, config) =>
+            validationParameters.IssuerSigningKeyValidator = (securityKey, securityToken, vp, callContext) =>
             {
-                ValidateIssuerSigningKey(securityKey, securityToken, config);
+                BaseConfiguration baseConfiguration = null;
+                if (vp.ConfigurationManager != null)
+                    baseConfiguration = vp.ConfigurationManager.GetBaseConfigurationAsync(System.Threading.CancellationToken.None).ConfigureAwait(false).GetAwaiter().GetResult();
+
+                ValidateIssuerSigningKey(securityKey, securityToken, baseConfiguration);
 
                 // preserve and run provided logic
-                if (userProvidedIssuerSigningKeyValidatorUsingConfiguration != null)
-                    return userProvidedIssuerSigningKeyValidatorUsingConfiguration(securityKey, securityToken, tvp, config);
+                if (issuerSigningKeyValidationDelegate != null)
+                    return issuerSigningKeyValidationDelegate(securityKey, securityToken, vp, callContext);
 
-                if (userProvidedIssuerSigningKeyValidator != null)
-                    return userProvidedIssuerSigningKeyValidator(securityKey, securityToken, tvp);
-
-                return ValidateIssuerSigningKeyCertificate(securityKey, tvp);
+                return ValidateIssuerSigningKeyCertificate(securityKey, validationParameters);
             };
         }
 
@@ -162,7 +165,11 @@ namespace Microsoft.IdentityModel.Validators
 
                     if (!string.Equals(signingKeyCloudInstanceName, configurationCloudInstanceName, StringComparison.Ordinal))
                         throw LogHelper.LogExceptionMessage(
-                            new SecurityTokenInvalidCloudInstanceException(LogHelper.FormatInvariant(LogMessages.IDX40012, LogHelper.MarkAsNonPII(signingKeyCloudInstanceName), LogHelper.MarkAsNonPII(configurationCloudInstanceName)))
+                            new SecurityTokenInvalidCloudInstanceException(
+                                LogHelper.FormatInvariant(
+                                    LogMessages.IDX40012,
+                                    LogHelper.MarkAsNonPII(signingKeyCloudInstanceName),
+                                    LogHelper.MarkAsNonPII(configurationCloudInstanceName)))
                             {
                                 ConfigurationCloudInstanceName = configurationCloudInstanceName,
                                 SigningKeyCloudInstanceName = signingKeyCloudInstanceName,
@@ -232,29 +239,16 @@ namespace Microsoft.IdentityModel.Validators
         /// Validates the issuer signing key certificate.
         /// </summary>
         /// <param name="securityKey">The <see cref="SecurityKey"/> that signed the <see cref="SecurityToken"/>.</param>
-        /// <param name="validationParameters">The <see cref="TokenValidationParameters"/> that are used to validate the token.</param>
+        /// <param name="validationParameters">The <see cref="ValidationParameters"/> that are used to validate the token.</param>
         /// <returns><c>true</c> if the issuer signing key certificate is valid; otherwise, <c>false</c>.</returns>
-        internal static bool ValidateIssuerSigningKeyCertificate(SecurityKey securityKey, TokenValidationParameters validationParameters)
+        internal static ValidationResult<ValidatedSigningKeyLifetime> ValidateIssuerSigningKeyCertificate(SecurityKey securityKey, ValidationParameters validationParameters)
         {
-            if (!validationParameters.RequireSignedTokens && securityKey == null)
-            {
-                LogHelper.LogInformation(Tokens.LogMessages.IDX10252);
-                return true;
-            }
-            else if (securityKey == null)
+            if (securityKey == null)
             {
                 throw LogHelper.LogExceptionMessage(new ArgumentNullException(nameof(securityKey), LogMessages.IDX40007));
             }
 
-            if (!validationParameters.ValidateIssuerSigningKey)
-            {
-                LogHelper.LogVerbose(Tokens.LogMessages.IDX10237);
-                return true;
-            }
-
-            Tokens.Validators.ValidateIssuerSigningKeyLifeTime(securityKey, validationParameters);
-
-            return true;
+            return Tokens.Validators.ValidateIssuerSigningKeyLifeTime(securityKey, validationParameters, new CallContext());
         }
     }
 }

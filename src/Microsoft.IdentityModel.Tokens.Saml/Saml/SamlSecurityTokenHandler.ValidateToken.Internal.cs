@@ -15,7 +15,7 @@ namespace Microsoft.IdentityModel.Tokens.Saml
     /// </summary>
     public partial class SamlSecurityTokenHandler : SecurityTokenHandler
     {
-        internal async Task<ValidationResult<ValidatedToken>> ValidateTokenAsync(
+        internal override async Task<ValidationResult<ValidatedToken>> ValidateTokenAsync(
             string token,
             ValidationParameters validationParameters,
             CallContext callContext,
@@ -34,7 +34,7 @@ namespace Microsoft.IdentityModel.Tokens.Saml
             return await ValidateTokenAsync(tokenReadingResult.UnwrapResult(), validationParameters, callContext, cancellationToken).ConfigureAwait(false);
         }
 
-        internal async Task<ValidationResult<ValidatedToken>> ValidateTokenAsync(
+        internal override async Task<ValidationResult<ValidatedToken>> ValidateTokenAsync(
             SecurityToken securityToken,
             ValidationParameters validationParameters,
             CallContext callContext,
@@ -148,7 +148,6 @@ namespace Microsoft.IdentityModel.Tokens.Saml
                     samlToken.SigningKey,
                     samlToken,
                     validationParameters,
-                    null,
                     callContext);
 
                 if (!issuerSigningKeyValidationResult.IsValid)
