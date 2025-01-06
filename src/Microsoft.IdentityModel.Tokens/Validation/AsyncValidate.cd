@@ -143,7 +143,7 @@
     </ShowAsAssociation>
   </Class>
   <Struct Name="Microsoft.IdentityModel.Tokens.ValidationResult&lt;TResult&gt;">
-    <Position X="0.5" Y="7.5" Width="3.75" />
+    <Position X="4" Y="8" Width="3.75" />
     <Members>
       <Field Name="_error" Hidden="true" />
       <Field Name="_result" Hidden="true" />
