@@ -1743,19 +1743,6 @@ namespace Microsoft.IdentityModel.JsonWebTokens.Tests
         }
 
         [Fact]
-        public void CreateTokenWithoutKeyIdentifiersInHeader()
-        {
-            string rawToken = new JsonWebTokenHandler().CreateToken(new SecurityTokenDescriptor
-            {
-                SigningCredentials = KeyingMaterial.JsonWebKeyRsa256SigningCredentials,
-                IncludeKeyIdInHeader = false
-            });
-            var token = new JsonWebToken(rawToken);
-            Assert.False(token.TryGetHeaderValue(JwtHeaderParameterNames.Kid, out string _));
-            Assert.False(token.TryGetHeaderValue(JwtHeaderParameterNames.X5t, out string _));
-        }
-
-        [Fact]
         public void ReadTokenDelegates_CalledCorrectly()
         {
             var tokenSpan = new JsonWebTokenHandler().CreateToken(new SecurityTokenDescriptor
@@ -1796,6 +1783,19 @@ namespace Microsoft.IdentityModel.JsonWebTokens.Tests
         private class CustomPayloadClaim(string customValue)
         {
             public string CustomValue { get; set; } = customValue;
+        }
+
+        [Fact]
+        public void CreateTokenWithoutKeyIdentifiersInHeader()
+        {
+            string rawToken = new JsonWebTokenHandler().CreateToken(new SecurityTokenDescriptor
+            {
+                SigningCredentials = KeyingMaterial.JsonWebKeyRsa256SigningCredentials,
+                IncludeKeyIdInHeader = false
+            });
+            var token = new JsonWebToken(rawToken);
+            Assert.False(token.TryGetHeaderValue(JwtHeaderParameterNames.Kid, out string _));
+            Assert.False(token.TryGetHeaderValue(JwtHeaderParameterNames.X5t, out string _));
         }
     }
 
