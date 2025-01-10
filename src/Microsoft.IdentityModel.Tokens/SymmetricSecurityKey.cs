@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 
 using System;
+using System.Security.Cryptography;
 using Microsoft.IdentityModel.Logging;
 
 namespace Microsoft.IdentityModel.Tokens
@@ -14,8 +15,12 @@ namespace Microsoft.IdentityModel.Tokens
         int _keySize;
         byte[] _key;
 
-        internal SymmetricSecurityKey(JsonWebKey webKey)
-            : base(webKey)
+        /// <summary>
+        /// Returns a new instance of <see cref="SymmetricSecurityKey"/> instance.
+        /// </summary>
+        /// <param name="webKey"><see cref="JsonWebKey"/></param>
+        public SymmetricSecurityKey(JsonWebKey webKey)
+            : base(webKey ?? throw LogHelper.LogArgumentNullException(nameof(webKey)))
         {
             if (string.IsNullOrEmpty(webKey.K))
                 throw LogHelper.LogExceptionMessage(new ArgumentException(LogHelper.FormatInvariant(LogMessages.IDX10703, LogHelper.MarkAsNonPII(typeof(SymmetricSecurityKey)))));

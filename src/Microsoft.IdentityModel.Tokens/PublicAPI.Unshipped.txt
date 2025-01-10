@@ -1,2 +1,4 @@
+Microsoft.IdentityModel.Tokens.RsaSecurityKey.RsaSecurityKey(Microsoft.IdentityModel.Tokens.JsonWebKey webKey) -> void
 Microsoft.IdentityModel.Tokens.SecurityTokenDescriptor.IncludeKeyIdInHeader.get -> bool
 Microsoft.IdentityModel.Tokens.SecurityTokenDescriptor.IncludeKeyIdInHeader.set -> void
+Microsoft.IdentityModel.Tokens.SymmetricSecurityKey.SymmetricSecurityKey(Microsoft.IdentityModel.Tokens.JsonWebKey webKey) -> void
