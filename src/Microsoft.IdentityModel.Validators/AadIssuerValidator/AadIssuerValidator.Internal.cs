@@ -26,7 +26,7 @@ namespace Microsoft.IdentityModel.Validators
         /// <param name="cancellationToken"></param>
         /// <returns>An <see cref="ValidationResult{TResult}"/> that contains either the issuer that was validated or an error.</returns>
         /// <remarks>An EXACT match is required.</remarks>
-        internal async ValueTask<ValidationResult<ValidatedIssuer>> ValidateIssuerAsync(
+        internal async Task<ValidationResult<ValidatedIssuer>> ValidateIssuerAsync(
             string issuer,
             SecurityToken securityToken,
             ValidationParameters validationParameters,
