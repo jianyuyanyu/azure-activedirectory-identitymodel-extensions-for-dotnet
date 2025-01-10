@@ -2,7 +2,6 @@
 // Licensed under the MIT License.
 
 using System;
-using System.Security.Cryptography;
 using Microsoft.IdentityModel.Logging;
 
 namespace Microsoft.IdentityModel.Tokens
