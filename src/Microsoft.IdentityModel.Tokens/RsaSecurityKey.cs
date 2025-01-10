@@ -20,16 +20,9 @@ namespace Microsoft.IdentityModel.Tokens
 
         private const string _className = "Microsoft.IdentityModel.Tokens.RsaSecurityKey";
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="RsaSecurityKey"/> class.
-        /// </summary>
-        /// <param name="webKey"><see cref="JsonWebKey"/></param>
-        public RsaSecurityKey(JsonWebKey webKey)
+        internal RsaSecurityKey(JsonWebKey webKey)
             : base(webKey)
         {
-            if (webKey == null)
-                throw LogHelper.LogArgumentNullException(nameof(webKey));
-
             IntializeWithRsaParameters(webKey.CreateRsaParameters());
             webKey.ConvertedSecurityKey = this;
         }
