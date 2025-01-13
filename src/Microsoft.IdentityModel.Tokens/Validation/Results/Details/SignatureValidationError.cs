@@ -10,7 +10,7 @@ namespace Microsoft.IdentityModel.Tokens
     /// <summary>
     /// Represents a signature validation error.
     /// </summary>
-    public class SignatureValidationError : ValidationError
+    internal class SignatureValidationError : ValidationError
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="SignatureValidationError"/> class.

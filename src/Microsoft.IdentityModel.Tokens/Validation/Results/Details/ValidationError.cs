@@ -188,7 +188,6 @@ namespace Microsoft.IdentityModel.Tokens
         /// Logs the validation error.
         /// </summary>
         /// <param name="logger">The <see cref="ILogger"/> to be used for logging.</param>
-        [CLSCompliant(false)]
         public void Log(ILogger logger)
         {
             Logger.TokenValidationFailed(logger, FailureType.Name, MessageDetail.Message);
