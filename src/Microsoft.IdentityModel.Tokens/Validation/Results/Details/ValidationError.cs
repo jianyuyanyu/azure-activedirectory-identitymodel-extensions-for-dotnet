@@ -19,6 +19,8 @@ namespace Microsoft.IdentityModel.Tokens
     {
         private Type _exceptionType;
 
+        private Exception? _exception;
+
         /// <summary>
         /// Creates an instance of <see cref="ValidationError"/>
         /// </summary>
@@ -44,16 +46,24 @@ namespace Microsoft.IdentityModel.Tokens
             };
         }
 
+        public Exception GetException()
+        {
+            if (_exception is null)
+                _exception = CreateException();
+
+            return _exception;
+        }
+
         /// <summary>
         /// Creates an instance of an <see cref="Exception"/> using <see cref="ValidationError"/>
         /// </summary>
         /// <returns>An instance of an Exception.</returns>
-        public virtual Exception GetException()
+        protected virtual Exception CreateException()
         {
-            return GetException(ExceptionType, InnerException);
+            return CreateException(ExceptionType, InnerException);
         }
 
-        internal Exception GetException(Type exceptionType, Exception? innerException)
+        internal Exception CreateException(Type exceptionType, Exception? innerException)
         {
             Exception? exception = null;
 

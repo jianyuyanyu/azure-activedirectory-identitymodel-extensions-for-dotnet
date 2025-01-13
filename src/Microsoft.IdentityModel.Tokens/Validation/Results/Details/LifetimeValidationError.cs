@@ -41,7 +41,7 @@ namespace Microsoft.IdentityModel.Tokens
         /// Creates an instance of an <see cref="Exception"/> using <see cref="ValidationError"/>
         /// </summary>
         /// <returns>An instance of an Exception.</returns>
-        public override Exception GetException()
+        protected override Exception CreateException()
         {
             if (ExceptionType == typeof(SecurityTokenNoExpirationException))
             {
@@ -78,7 +78,7 @@ namespace Microsoft.IdentityModel.Tokens
                 return exception;
             }
             else
-                return base.GetException(ExceptionType, null);
+                return base.CreateException(ExceptionType, null);
         }
 
         /// <summary>

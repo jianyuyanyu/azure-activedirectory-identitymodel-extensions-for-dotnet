@@ -20,9 +20,9 @@ Microsoft.IdentityModel.Tokens.Saml2.Saml2SecurityTokenHandler.ValidateTokenAsyn
 Microsoft.IdentityModel.Tokens.Saml2.Saml2ValidationError
 Microsoft.IdentityModel.Tokens.Saml2.Saml2ValidationError.Saml2ValidationError(Microsoft.IdentityModel.Tokens.MessageDetail messageDetail, Microsoft.IdentityModel.Tokens.ValidationFailureType validationFailureType, System.Type exceptionType, System.Diagnostics.StackFrame stackFrame, System.Exception innerException = null) -> void
 override Microsoft.IdentityModel.Tokens.Saml.SamlSecurityTokenHandler.CreateClaimsIdentityInternal(Microsoft.IdentityModel.Tokens.SecurityToken securityToken, Microsoft.IdentityModel.Tokens.ValidationParameters validationParameters, string issuer) -> System.Security.Claims.ClaimsIdentity
-override Microsoft.IdentityModel.Tokens.Saml.SamlValidationError.GetException() -> System.Exception
+override Microsoft.IdentityModel.Tokens.Saml.SamlValidationError.CreateException() -> System.Exception
 override Microsoft.IdentityModel.Tokens.Saml2.Saml2SecurityTokenHandler.CreateClaimsIdentityInternal(Microsoft.IdentityModel.Tokens.SecurityToken securityToken, Microsoft.IdentityModel.Tokens.ValidationParameters validationParameters, string issuer) -> System.Security.Claims.ClaimsIdentity
-override Microsoft.IdentityModel.Tokens.Saml2.Saml2ValidationError.GetException() -> System.Exception
+override Microsoft.IdentityModel.Tokens.Saml2.Saml2ValidationError.CreateException() -> System.Exception
 static Microsoft.IdentityModel.Tokens.Saml.SamlSecurityTokenHandler.StackFrames.IssuerValidationFailed -> System.Diagnostics.StackFrame
 static Microsoft.IdentityModel.Tokens.Saml.SamlSecurityTokenHandler.StackFrames.SignatureValidationFailed -> System.Diagnostics.StackFrame
 static Microsoft.IdentityModel.Tokens.Saml.SamlSecurityTokenHandler.ValidateSignature(Microsoft.IdentityModel.Tokens.Saml.SamlSecurityToken samlToken, Microsoft.IdentityModel.Tokens.ValidationParameters validationParameters, Microsoft.IdentityModel.Tokens.CallContext callContext) -> Microsoft.IdentityModel.Tokens.ValidationResult<Microsoft.IdentityModel.Tokens.SecurityKey>
