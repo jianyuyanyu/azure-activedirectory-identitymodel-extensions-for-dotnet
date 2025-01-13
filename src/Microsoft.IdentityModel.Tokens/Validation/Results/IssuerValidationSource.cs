@@ -5,7 +5,9 @@
 namespace Microsoft.IdentityModel.Tokens
 {
     /// <summary>
-    /// Represents the source of the validation of an issuer.
+    /// Represents the source from which the token issuer was validated.
+    /// i.e. whether the issuer was matched with the configuration provided or the validation parameters provided.
+    /// If a custom issuer validation delegate is used, a custom validation source can be instantiated and used.
     /// </summary>
     internal class IssuerValidationSource
     {
