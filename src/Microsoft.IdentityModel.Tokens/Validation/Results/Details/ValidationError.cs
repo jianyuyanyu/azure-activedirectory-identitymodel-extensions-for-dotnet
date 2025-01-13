@@ -311,7 +311,13 @@ namespace Microsoft.IdentityModel.Tokens
             public static void TokenValidationFailed(
                 ILogger logger,
                 string validationFailureType,
-                string messageDetail) => s_tokenValidationFailed(logger, validationFailureType, messageDetail, null);
+                string messageDetail)
+            {
+                if (logger.IsEnabled(LogLevel.Information))
+                {
+                    s_tokenValidationFailed(logger, validationFailureType, messageDetail, null);
+                }
+            }
         }
     }
 }

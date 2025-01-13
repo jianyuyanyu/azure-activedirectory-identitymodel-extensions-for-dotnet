@@ -221,7 +221,13 @@ namespace Microsoft.IdentityModel.Tokens
             public static void TokenValidationFailed(
                 ILogger logger,
                 ValidationFailureType validationFailureType,
-                MessageDetail messageDetail) => s_tokenValidationFailed(logger, validationFailureType.Name, messageDetail.Message, null);
+                MessageDetail messageDetail)
+            {
+                if (logger.IsEnabled(LogLevel.Information))
+                {
+                    s_tokenValidationFailed(logger, validationFailureType.Name, messageDetail.Message, null);
+                }
+            }
 
             private static readonly Action<ILogger, string, ValidatedLifetime?, ValidatedIssuer?, ValidatedTokenType?, string, bool, Exception?> s_tokenValidationSucceeded =
                 LoggerMessage.Define<string, ValidatedLifetime?, ValidatedIssuer?, ValidatedTokenType?, string, bool>(
@@ -252,15 +258,21 @@ namespace Microsoft.IdentityModel.Tokens
                 ValidatedIssuer? validatedIssuer,
                 ValidatedTokenType? validatedTokenType,
                 string validatedSigningKeyId,
-                bool actorWasValidated) => s_tokenValidationSucceeded(
-                    logger,
-                    validatedAudience,
-                    validatedLifetime,
-                    validatedIssuer,
-                    validatedTokenType,
-                    validatedSigningKeyId,
-                    actorWasValidated,
-                    null);
+                bool actorWasValidated)
+            {
+                if (logger.IsEnabled(LogLevel.Debug))
+                {
+                    s_tokenValidationSucceeded(
+                        logger,
+                        validatedAudience,
+                        validatedLifetime,
+                        validatedIssuer,
+                        validatedTokenType,
+                        validatedSigningKeyId,
+                        actorWasValidated,
+                        null);
+                }
+            }
         }
         #endregion
     }
