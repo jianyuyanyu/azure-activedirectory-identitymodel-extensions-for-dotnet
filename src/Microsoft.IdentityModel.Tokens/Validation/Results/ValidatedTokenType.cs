@@ -14,12 +14,12 @@ namespace Microsoft.IdentityModel.Tokens
         /// <summary>
         /// Initializes a new instance of <see cref="ValidatedTokenType"/>.
         /// </summary>
-        /// <param name="Type">The token type that was validated.</param>
-        /// <param name="ValidTypeCount">The number of valid types present in the validation parameters.</param>
-        public ValidatedTokenType(string Type, int ValidTypeCount)
+        /// <param name="type">The token type that was validated.</param>
+        /// <param name="validTypeCount">The number of valid types present in the validation parameters.</param>
+        public ValidatedTokenType(string type, int validTypeCount)
         {
-            this.Type = Type;
-            this.ValidTypeCount = ValidTypeCount;
+            Type = type;
+            ValidTypeCount = validTypeCount;
         }
 
         /// <summary>
