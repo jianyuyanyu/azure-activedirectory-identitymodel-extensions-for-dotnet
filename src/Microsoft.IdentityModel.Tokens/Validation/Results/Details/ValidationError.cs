@@ -13,7 +13,8 @@ using Microsoft.IdentityModel.Logging;
 namespace Microsoft.IdentityModel.Tokens
 {
     /// <summary>
-    /// Contains information so that Exceptions can be logged or thrown written as required.
+    /// Represents an error that occurred during token validation.
+    /// If necessary, it can be used to create an instance of <see cref="Exception"/>.
     /// </summary>
     internal class ValidationError
     {
@@ -28,7 +29,7 @@ namespace Microsoft.IdentityModel.Tokens
         /// <param name="validationFailureType"/> is the type of validation failure that occurred.
         /// <param name="exceptionType"/> is the type of exception that occurred.
         /// <param name="stackFrame"/> is the stack frame where the exception occurred.
-        /// <param name="innerException"/> is the inner exception that occurred.
+        /// <param name="innerException"/> if present, represents the exception that occurred during validation.
         internal protected ValidationError(
             MessageDetail messageDetail,
             ValidationFailureType validationFailureType,

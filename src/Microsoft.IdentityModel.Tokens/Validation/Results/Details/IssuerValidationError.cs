@@ -8,7 +8,8 @@ using System.Diagnostics;
 namespace Microsoft.IdentityModel.Tokens
 {
     /// <summary>
-    /// Represents an issuer validation error.
+    /// Represents an error that occurs when the issuer of a token cannot be validated.
+    /// If available, the invalid issuer is stored in <see cref="InvalidIssuer"/>.
     /// </summary>
     internal class IssuerValidationError : ValidationError
     {
@@ -19,8 +20,8 @@ namespace Microsoft.IdentityModel.Tokens
         /// <param name="validationFailureType"/> is the type of validation failure that occurred.
         /// <param name="exceptionType"/> is the type of exception that occurred.
         /// <param name="stackFrame"/> is the stack frame where the exception occurred.
-        /// <param name="invalidIssuer"/> is the issuer that could not be validated.
-        /// <param name="innerException"/> is the inner exception that occurred.
+        /// <param name="invalidIssuer"/> is the issuer that could not be validated. Can be null if the issuer is missing from the token.
+        /// <param name="innerException"/> if present, represents the exception that occurred during validation.
         public IssuerValidationError(
             MessageDetail messageDetail,
             ValidationFailureType validationFailureType,

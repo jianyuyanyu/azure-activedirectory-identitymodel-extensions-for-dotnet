@@ -8,7 +8,8 @@ using System.Diagnostics;
 namespace Microsoft.IdentityModel.Tokens
 {
     /// <summary>
-    /// Represents a token type validation error.
+    /// Represents an error that occurs when a token type cannot be validated.
+    /// If available, the invalid token type is stored in <see cref="InvalidTokenType"/>.
     /// </summary>
     internal class TokenTypeValidationError : ValidationError
     {
@@ -19,8 +20,8 @@ namespace Microsoft.IdentityModel.Tokens
         /// <param name="validationFailureType"/> is the type of validation failure that occurred.
         /// <param name="exceptionType"/> is the type of exception that occurred.
         /// <param name="stackFrame"/> is the stack frame where the exception occurred.
-        /// <param name="invalidTokenType"/> is the token type that could not be validated.
-        /// <param name="innerException"/> is the inner exception that occurred.
+        /// <param name="invalidTokenType"/> is the token type that could not be validated. Can be null if the token type is missing from the token.
+        /// <param name="innerException"/> if present, represents the exception that occurred during validation.
         public TokenTypeValidationError(
             MessageDetail messageDetail,
             ValidationFailureType validationFailureType,

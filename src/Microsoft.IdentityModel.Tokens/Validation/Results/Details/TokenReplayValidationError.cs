@@ -8,7 +8,8 @@ using System.Diagnostics;
 namespace Microsoft.IdentityModel.Tokens
 {
     /// <summary>
-    /// Represents a token replay validation error.
+    /// Represents an error that occurs when a token cannot be validated against being re-used or replay is detected.
+    /// If available, the expiration time of the token that failed the validation is included.
     /// </summary>
     internal class TokenReplayValidationError : ValidationError
     {
@@ -19,8 +20,8 @@ namespace Microsoft.IdentityModel.Tokens
         /// <param name="validationFailureType"/> is the type of validation failure that occurred.
         /// <param name="exceptionType"/> is the type of exception that occurred.
         /// <param name="stackFrame"/> is the stack frame where the exception occurred.
-        /// <param name="expirationTime"/> is the expiration time of the token that failed the validation.
-        /// <param name="innerException"/> is the inner exception that occurred.
+        /// <param name="expirationTime"/> is the expiration time of the token that failed the validation. Can be null if the token does not have an expiration time.
+        /// <param name="innerException"/> if present, represents the exception that occurred during validation.
         public TokenReplayValidationError(
             MessageDetail messageDetail,
             ValidationFailureType validationFailureType,
