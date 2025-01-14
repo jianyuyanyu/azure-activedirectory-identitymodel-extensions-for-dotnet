@@ -14,17 +14,25 @@ namespace Microsoft.IdentityModel.Tokens
     /// <summary>
     /// Contains the results of successfully validating a <see cref="SecurityToken"/>.
     /// </summary>
-    /// <remarks>
-    /// Creates an instance of <see cref="ValidatedToken"/>
-    /// </remarks>
-    /// <param name="securityToken">The <see cref="SecurityToken"/> that is being validated.</param>
-    /// <param name="tokenHandler">The <see cref="TokenHandler"/> that is being used to validate the token.</param>
-    /// <param name="validationParameters">The <see cref="ValidationParameters"/> to be used for validating the token.</param>
-    internal class ValidatedToken(
-        SecurityToken securityToken,
-        TokenHandler tokenHandler,
-        ValidationParameters validationParameters)
+    internal class ValidatedToken
     {
+        /// <summary>
+        /// Initializes a new instance of <see cref="ValidatedToken"/>.
+        /// </summary>
+        /// <param name="securityToken">The <see cref="SecurityToken"/> that was validated.</param>
+        /// <param name="tokenHandler">The <see cref="TokenHandler"/> that was used to validate the token.</param>
+        /// <param name="validationParameters">The <see cref="ValidationParameters"/> used to validate the token.</param>
+        /// <exception cref="ArgumentNullException">If <paramref name="securityToken"/>, <paramref name="tokenHandler"/>, or <paramref name="validationParameters"/> is null.</exception>
+        public ValidatedToken(
+            SecurityToken securityToken,
+            TokenHandler tokenHandler,
+            ValidationParameters validationParameters)
+        {
+            SecurityToken = securityToken ?? throw new ArgumentNullException(nameof(securityToken));
+            TokenHandler = tokenHandler ?? throw new ArgumentNullException(nameof(tokenHandler));
+            ValidationParameters = validationParameters ?? throw new ArgumentNullException(nameof(validationParameters));
+        }
+
         /// <summary>
         /// Logs the validation result.
         /// </summary>
@@ -41,17 +49,17 @@ namespace Microsoft.IdentityModel.Tokens
         /// <summary>
         /// The <see cref="SecurityToken"/> that was validated.
         /// </summary>
-        public SecurityToken SecurityToken { get; private set; } = securityToken ?? throw new ArgumentNullException(nameof(securityToken));
+        public SecurityToken SecurityToken { get; }
 
         /// <summary>
         /// The <see cref="TokenHandler"/> that was used to validate the token.
         /// </summary>
-        public TokenHandler TokenHandler { get; private set; } = tokenHandler ?? throw new ArgumentNullException(nameof(tokenHandler));
+        public TokenHandler TokenHandler { get; }
 
         /// <summary>
         /// The <see cref="ValidationParameters"/> that were used to validate the token.
         /// </summary>
-        public ValidationParameters ValidationParameters { get; private set; } = validationParameters ?? throw new ArgumentNullException(nameof(validationParameters));
+        public ValidationParameters ValidationParameters { get; }
 
         #region Validated Properties
         /// <summary>
