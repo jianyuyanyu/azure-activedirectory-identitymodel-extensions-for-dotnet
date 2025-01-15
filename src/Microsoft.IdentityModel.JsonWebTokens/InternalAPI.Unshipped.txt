@@ -1,3 +1,5 @@
+Microsoft.IdentityModel.JsonWebTokens.JsonWebToken.JsonWebToken(string header, string payload, Microsoft.IdentityModel.Tokens.ReadTokenPayloadValueDelegate readTokenPayloadValueDelegate) -> void
+Microsoft.IdentityModel.JsonWebTokens.JsonWebToken.JsonWebToken(string jwtEncodedString, Microsoft.IdentityModel.Tokens.ReadTokenPayloadValueDelegate readTokenPayloadValueDelegate) -> void
 Microsoft.IdentityModel.JsonWebTokens.JsonWebToken.JsonWebToken(System.ReadOnlyMemory<char> encodedTokenMemory, Microsoft.IdentityModel.Tokens.ReadTokenPayloadValueDelegate readTokenPayloadValueDelegate) -> void
 Microsoft.IdentityModel.JsonWebTokens.JsonWebToken.ReadTokenPayloadValueDelegate.get -> Microsoft.IdentityModel.Tokens.ReadTokenPayloadValueDelegate
 Microsoft.IdentityModel.JsonWebTokens.JsonWebToken.ReadTokenPayloadValueDelegate.set -> void
