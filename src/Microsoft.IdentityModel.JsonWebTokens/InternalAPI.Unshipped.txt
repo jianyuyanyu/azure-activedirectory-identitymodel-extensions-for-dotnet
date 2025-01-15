@@ -1,3 +1,4 @@
+Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler._telemetryClient -> Microsoft.IdentityModel.Telemetry.ITelemetryClient
 Microsoft.IdentityModel.JsonWebTokens.JsonWebToken.JsonWebToken(string header, string payload, Microsoft.IdentityModel.Tokens.ReadTokenPayloadValueDelegate readTokenPayloadValueDelegate) -> void
 Microsoft.IdentityModel.JsonWebTokens.JsonWebToken.JsonWebToken(string jwtEncodedString, Microsoft.IdentityModel.Tokens.ReadTokenPayloadValueDelegate readTokenPayloadValueDelegate) -> void
 Microsoft.IdentityModel.JsonWebTokens.JsonWebToken.JsonWebToken(System.ReadOnlyMemory<char> encodedTokenMemory, Microsoft.IdentityModel.Tokens.ReadTokenPayloadValueDelegate readTokenPayloadValueDelegate) -> void
