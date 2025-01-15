@@ -92,6 +92,12 @@ namespace Microsoft.IdentityModel.Tokens
 
             return true;
         }
+
+        /// <summary>
+        /// The validated issuer's string representation.
+        /// </summary>
+        /// <returns>A string representing the issuer and where it was validated from.</returns>
+        public override string ToString() => $"{Issuer} (from {ValidationSource})";
     }
 }
 #nullable restore

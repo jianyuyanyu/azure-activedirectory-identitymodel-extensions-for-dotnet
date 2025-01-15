@@ -92,6 +92,12 @@ namespace Microsoft.IdentityModel.Tokens
 
             return true;
         }
+
+        /// <summary>
+        /// The validated lifetime's string representation.
+        /// </summary>
+        /// <returns>A string representing the validated lifetime.</returns>
+        public override string ToString() => $"[{NotBefore}, {Expires}]";
     }
 }
 #nullable restore

@@ -99,6 +99,12 @@ namespace Microsoft.IdentityModel.Tokens
 
             return true;
         }
+
+        /// <summary>
+        /// The validated signing key lifetime's string representation.
+        /// </summary>
+        /// <returns>A string that represents the validated signing key lifetime and the validation time.</returns>
+        public override string ToString() => $"{ValidationTime} ∊ [{ValidFrom}, {ValidTo}]";
     }
 }
 #nullable restore

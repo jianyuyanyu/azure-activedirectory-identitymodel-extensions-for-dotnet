@@ -36,6 +36,12 @@ namespace Microsoft.IdentityModel.Tokens
         /// Represents the issuer validation source that has been matched with the validation parameters provided.
         /// </summary>
         public static readonly IssuerValidationSource IssuerMatchedValidationParameters = new("IssuerMatchedValidationParameters");
+
+        /// <summary>
+        /// The issuer validation source's string representation.
+        /// </summary>
+        /// <returns>The name of the issuer validation source.</returns>
+        public override string ToString() => Name;
     }
 }
 #nullable restore

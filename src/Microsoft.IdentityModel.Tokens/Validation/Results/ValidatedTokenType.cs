@@ -90,6 +90,12 @@ namespace Microsoft.IdentityModel.Tokens
 
             return true;
         }
+
+        /// <summary>
+        /// The validated token type's string representation.
+        /// </summary>
+        /// <returns>A string representing the validated token type and the amount of valid types.</returns>
+        public override string ToString() => $"{Type} ({ValidTypeCount} valid types)";
     }
 }
 #nullable restore
