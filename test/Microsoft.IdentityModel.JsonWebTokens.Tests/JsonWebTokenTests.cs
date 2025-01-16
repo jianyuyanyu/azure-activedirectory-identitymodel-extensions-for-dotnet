@@ -1759,19 +1759,21 @@ namespace Microsoft.IdentityModel.JsonWebTokens.Tests
             }).AsMemory();
 
             CustomPayloadClaim payloadClaimFromDelegate = null;
-            object ReadPayloadValue(ref Utf8JsonReader reader, string claimName)
+            void ReadPayloadValue(ref Utf8JsonReader reader, IDictionary<string, object> claims)
             {
                 // Handle custom claims.
                 if (reader.ValueTextEquals(customPayloadClaimName))
                 {
                     reader.Read(); // Move to the value.
                     payloadClaimFromDelegate = System.Text.Json.JsonSerializer.Deserialize<CustomPayloadClaim>(reader.GetString());
+                    claims[customPayloadClaimName] = payloadClaimFromDelegate;
                     reader.Read();
-                    return payloadClaimFromDelegate;
                 }
-
-                // Call base implementation to handle other claims known to IdentityModel.
-                return JsonWebToken.ReadTokenPayloadValue(ref reader, claimName);
+                else
+                {
+                    // Call base implementation to handle other claims known to IdentityModel.
+                    JsonWebToken.ReadTokenPayloadValue(ref reader, claims);
+                }
             }
 
             var jwt = new JsonWebToken(tokenSpan, ReadPayloadValue);
@@ -1800,19 +1802,21 @@ namespace Microsoft.IdentityModel.JsonWebTokens.Tests
             }).AsMemory();
 
             CustomPayloadClaim payloadClaimFromDelegate = null;
-            object ReadPayloadValue(ref Utf8JsonReader reader, string claimName)
+            void ReadPayloadValue(ref Utf8JsonReader reader, IDictionary<string, object> claims)
             {
                 // Handle custom claims.
                 if (reader.ValueTextEquals(customPayloadClaimName))
                 {
                     reader.Read(); // Move to the value.
                     payloadClaimFromDelegate = System.Text.Json.JsonSerializer.Deserialize<CustomPayloadClaim>(reader.GetString());
+                    claims[customPayloadClaimName] = payloadClaimFromDelegate;
                     reader.Read();
-                    return payloadClaimFromDelegate;
                 }
-
-                // Call base implementation to handle other claims known to IdentityModel.
-                return JsonWebToken.ReadTokenPayloadValue(ref reader, claimName);
+                else
+                {
+                    // Call base implementation to handle other claims known to IdentityModel.
+                    JsonWebToken.ReadTokenPayloadValue(ref reader, claims);
+                }
             }
 
             var tokenValidationParameters = new TokenValidationParameters

@@ -217,7 +217,7 @@ namespace Microsoft.IdentityModel.Tokens
     /// Called for each claim when token payload is being read.
     /// </summary>
     /// <param name="reader">Reader for the underlying token bytes.</param>
-    /// <param name="claimName">The name of the claim being read.</param>
+    /// <param name="claims">A collection to hold claims that have been read.</param>
     /// <returns></returns>
-    internal delegate object ReadTokenPayloadValueDelegate(ref Utf8JsonReader reader, string claimName);
+    internal delegate void ReadTokenPayloadValueDelegate(ref Utf8JsonReader reader, IDictionary<string, object> claims);
 }
