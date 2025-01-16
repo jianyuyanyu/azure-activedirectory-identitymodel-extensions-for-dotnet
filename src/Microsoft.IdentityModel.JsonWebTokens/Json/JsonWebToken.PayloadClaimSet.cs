@@ -66,6 +66,7 @@ namespace Microsoft.IdentityModel.JsonWebTokens
                 if (reader.TokenType == JsonTokenType.StartArray)
                 {
                     JsonSerializerPrimitives.ReadStringsSkipNulls(ref reader, _audiences, JwtRegisteredClaimNames.Aud, ClassName);
+                    claims[JwtRegisteredClaimNames.Aud] = _audiences;
                 }
                 else
                 {
@@ -74,8 +75,11 @@ namespace Microsoft.IdentityModel.JsonWebTokens
                         _audiences.Add(JsonSerializerPrimitives.ReadString(ref reader, JwtRegisteredClaimNames.Aud, ClassName));
                         claims[JwtRegisteredClaimNames.Aud] = _audiences[0];
                     }
+                    else
+                    {
+                        claims[JwtRegisteredClaimNames.Aud] = _audiences;
+                    }
                 }
-                claims[JwtRegisteredClaimNames.Aud] = _audiences;
             }
             else if (reader.ValueTextEquals(JwtPayloadUtf8Bytes.Azp))
             {
