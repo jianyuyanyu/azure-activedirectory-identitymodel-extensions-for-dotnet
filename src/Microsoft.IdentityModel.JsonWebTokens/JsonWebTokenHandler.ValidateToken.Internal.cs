@@ -28,7 +28,7 @@ namespace Microsoft.IdentityModel.JsonWebTokens
             string token,
             ValidationParameters validationParameters,
             CallContext callContext,
-            CancellationToken cancellationToken)
+            CancellationToken cancellationToken = default)
         {
             if (string.IsNullOrEmpty(token))
             {
@@ -80,7 +80,7 @@ namespace Microsoft.IdentityModel.JsonWebTokens
             SecurityToken token,
             ValidationParameters validationParameters,
             CallContext callContext,
-            CancellationToken cancellationToken)
+            CancellationToken cancellationToken = default)
         {
             if (token is null)
             {
