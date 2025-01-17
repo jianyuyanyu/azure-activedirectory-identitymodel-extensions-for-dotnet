@@ -132,6 +132,7 @@ static Microsoft.IdentityModel.Tokens.Utility.SerializeAsSingleCommaDelimitedStr
 static Microsoft.IdentityModel.Tokens.ValidationError.GetCurrentStackFrame(string filePath = "", int lineNumber = 0, int skipFrames = 1) -> System.Diagnostics.StackFrame
 static readonly Microsoft.IdentityModel.Telemetry.TelemetryDataRecorder.ConfigurationManagerCounter -> System.Diagnostics.Metrics.Counter<long>
 static readonly Microsoft.IdentityModel.Telemetry.TelemetryDataRecorder.TotalDurationHistogram -> System.Diagnostics.Metrics.Histogram<long>
+static Microsoft.IdentityModel.Tokens.Validators.ValidateIssuerSigningKey(Microsoft.IdentityModel.Tokens.SecurityKey securityKey, Microsoft.IdentityModel.Tokens.SecurityToken securityToken, Microsoft.IdentityModel.Tokens.ValidationParameters validationParameters, Microsoft.IdentityModel.Tokens.CallContext callContext) -> Microsoft.IdentityModel.Tokens.ValidationResult<Microsoft.IdentityModel.Tokens.ValidatedSigningKeyLifetime>
 static readonly Microsoft.IdentityModel.Tokens.LoggingEventId.TokenValidationFailed -> Microsoft.Extensions.Logging.EventId
 static readonly Microsoft.IdentityModel.Tokens.LoggingEventId.TokenValidationSucceeded -> Microsoft.Extensions.Logging.EventId
 static readonly Microsoft.IdentityModel.Telemetry.TelemetryDataRecorder.ConfigurationManagerCounter -> System.Diagnostics.Metrics.Counter<long>
@@ -150,3 +151,5 @@ static readonly Microsoft.IdentityModel.Tokens.ValidationFailureType.TokenIsNotS
 static readonly Microsoft.IdentityModel.Tokens.ValidationFailureType.TokenReplayValidatorThrew -> Microsoft.IdentityModel.Tokens.ValidationFailureType
 static readonly Microsoft.IdentityModel.Tokens.ValidationFailureType.TokenTypeValidatorThrew -> Microsoft.IdentityModel.Tokens.ValidationFailureType
 static readonly Microsoft.IdentityModel.Tokens.ValidationFailureType.XmlValidationFailed -> Microsoft.IdentityModel.Tokens.ValidationFailureType
+virtual Microsoft.IdentityModel.Tokens.TokenHandler.ValidateTokenAsync(Microsoft.IdentityModel.Tokens.SecurityToken token, Microsoft.IdentityModel.Tokens.ValidationParameters validationParameters, Microsoft.IdentityModel.Tokens.CallContext callContext, System.Threading.CancellationToken cancellationToken) -> System.Threading.Tasks.Task<Microsoft.IdentityModel.Tokens.ValidationResult<Microsoft.IdentityModel.Tokens.ValidatedToken>>
+virtual Microsoft.IdentityModel.Tokens.TokenHandler.ValidateTokenAsync(string token, Microsoft.IdentityModel.Tokens.ValidationParameters validationParameters, Microsoft.IdentityModel.Tokens.CallContext callContext, System.Threading.CancellationToken cancellationToken) -> System.Threading.Tasks.Task<Microsoft.IdentityModel.Tokens.ValidationResult<Microsoft.IdentityModel.Tokens.ValidatedToken>>
