@@ -1,5 +1,17 @@
 See the [releases](https://github.com/AzureAD/azure-activedirectory-identitymodel-extensions-for-dotnet/releases) for details on bug fixes and added features.
 
+8.4.0
+=====
+
+## Bug Fixes
+* Respect TVP.RequireAudience when set to false. See https://github.com/AzureAD/azure-activedirectory-identitymodel-extensions-for-dotnet/pull/3055
+* For net4.6.2 select RSACng for PSS support. See https://github.com/AzureAD/azure-activedirectory-identitymodel-extensions-for-dotnet/pull/3085
+* Fix package downgrade in consuming libraries. See https://github.com/AzureAD/azure-activedirectory-identitymodel-extensions-for-dotnet/pull/3062
+
+## Fundamentals
+* Upgrade to C# 13. See https://github.com/AzureAD/azure-activedirectory-identitymodel-extensions-for-dotnet/pull/2998
+* Use new Base64Url API. See https://github.com/AzureAD/azure-activedirectory-identitymodel-extensions-for-dotnet/pull/2817
+
 8.3.0
 =====
 
