@@ -142,9 +142,6 @@ static Microsoft.IdentityModel.Tokens.Utility.SerializeAsSingleCommaDelimitedStr
 static Microsoft.IdentityModel.Tokens.ValidationError.GetCurrentStackFrame(string filePath = "", int lineNumber = 0, int skipFrames = 1) -> System.Diagnostics.StackFrame
 static readonly Microsoft.IdentityModel.Telemetry.TelemetryDataRecorder.ConfigurationManagerCounter -> System.Diagnostics.Metrics.Counter<long>
 static readonly Microsoft.IdentityModel.Telemetry.TelemetryDataRecorder.TotalDurationHistogram -> System.Diagnostics.Metrics.Histogram<long>
-static readonly Microsoft.IdentityModel.Tokens.IssuerValidationSource.IssuerMatchedConfiguration -> Microsoft.IdentityModel.Tokens.IssuerValidationSource
-static readonly Microsoft.IdentityModel.Tokens.IssuerValidationSource.IssuerMatchedValidationParameters -> Microsoft.IdentityModel.Tokens.IssuerValidationSource
-static readonly Microsoft.IdentityModel.Tokens.IssuerValidationSource.NotValidated -> Microsoft.IdentityModel.Tokens.IssuerValidationSource
 static readonly Microsoft.IdentityModel.Tokens.LoggingEventId.TokenValidationFailed -> Microsoft.Extensions.Logging.EventId
 static readonly Microsoft.IdentityModel.Tokens.LoggingEventId.TokenValidationSucceeded -> Microsoft.Extensions.Logging.EventId
 static readonly Microsoft.IdentityModel.Telemetry.TelemetryDataRecorder.ConfigurationManagerCounter -> System.Diagnostics.Metrics.Counter<long>
