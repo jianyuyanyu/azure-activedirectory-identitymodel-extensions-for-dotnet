@@ -50,6 +50,8 @@ override Microsoft.IdentityModel.Tokens.ValidatedTokenType.GetHashCode() -> int
 override Microsoft.IdentityModel.Tokens.ValidatedTokenType.ToString() -> string
 static Microsoft.IdentityModel.Telemetry.TelemetryDataRecorder.IncrementBackgroundConfigurationRefreshFailureCounter(in System.Diagnostics.TagList tagList) -> void
 static Microsoft.IdentityModel.Tokens.AppContextSwitches.UpdateConfigAsBlocking.get -> bool
+static Microsoft.IdentityModel.Tokens.TokenUtilities.IsRecoverableException(System.Exception exception, bool configContainsDecryptionKeys) -> bool
+static Microsoft.IdentityModel.Tokens.TokenUtilities.IsRecoverableExceptionType(System.Type exceptionType, bool configContainsDecryptionKeys) -> bool
 static Microsoft.IdentityModel.Tokens.ValidatedIssuer.operator !=(Microsoft.IdentityModel.Tokens.ValidatedIssuer left, Microsoft.IdentityModel.Tokens.ValidatedIssuer right) -> bool
 static Microsoft.IdentityModel.Tokens.ValidatedIssuer.operator ==(Microsoft.IdentityModel.Tokens.ValidatedIssuer left, Microsoft.IdentityModel.Tokens.ValidatedIssuer right) -> bool
 static Microsoft.IdentityModel.Tokens.ValidatedLifetime.operator !=(Microsoft.IdentityModel.Tokens.ValidatedLifetime left, Microsoft.IdentityModel.Tokens.ValidatedLifetime right) -> bool

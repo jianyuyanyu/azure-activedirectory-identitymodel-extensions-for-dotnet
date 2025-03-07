@@ -3257,6 +3257,7 @@ namespace Microsoft.IdentityModel.JsonWebTokens.Tests
             {
                 var handlerWithNoDefaultTimes = new JsonWebTokenHandler();
                 handlerWithNoDefaultTimes.SetDefaultTimesOnTokenCreation = false;
+
                 return new TheoryData<JwtTheoryData>
                 {
                     new JwtTheoryData
@@ -3275,7 +3276,7 @@ namespace Microsoft.IdentityModel.JsonWebTokens.Tests
                             TokenDecryptionKey = KeyingMaterial.DefaultX509Key_2048,
                             AlgorithmValidator = ValidationDelegates.AlgorithmValidatorBuilder(false)
                         },
-                        ExpectedException = new ExpectedException(typeof(SecurityTokenDecryptionFailedException), "IDX10697"),
+                        ExpectedException = new ExpectedException(typeof(SecurityTokenDecryptionFailedException), "IDX10697:"),
                     },
                     new JwtTheoryData
                     {
@@ -3345,7 +3346,92 @@ namespace Microsoft.IdentityModel.JsonWebTokens.Tests
                             AlgorithmValidator = ValidationDelegates.AlgorithmValidatorBuilder(true)
                         },
                     },
+                    new JwtTheoryData
+                    {
+                        TestId = "JWE_KeyWithKeyId_OnTokenDecryptFailure_KeysInConfig_SuccessOnRetry",
+                        Token = new JsonWebTokenHandler().CreateToken(
+                            Default.PayloadString,
+                            KeyingMaterial.DefaultSymmetricSigningCreds_256_Sha2,
+                            KeyingMaterial.DefaultSymmetricEncryptingCreds_Aes128_Sha2),
+                        ValidationParameters = new TokenValidationParameters
+                        {
+                            ValidAudience = Default.Audience,
+                            ValidIssuer = Default.Issuer,
+                            ValidateIssuerSigningKey = true,
+                            IssuerSigningKey = KeyingMaterial.DefaultSymmetricSigningCreds_256_Sha2.Key,
+                            ConfigurationManager = CreateConfigurationManager(true),
+                        },
+                    },
+                    new JwtTheoryData
+                    {
+                        TestId = "JWE_KeyWithoutKeyId_OnTokenDecryptFailure_KeysInConfig_SuccessOnRetry",
+                        Token = new JsonWebTokenHandler().CreateToken(
+                            Default.PayloadString,
+                            KeyingMaterial.DefaultSymmetricSigningCreds_256_Sha2,
+                            KeyingMaterial.DefaultSymmetricEncryptingCreds_Aes128_Sha2),
+                        ValidationParameters = new TokenValidationParameters
+                        {
+                            ValidAudience = Default.Audience,
+                            ValidIssuer = Default.Issuer,
+                            ValidateIssuerSigningKey = true,
+                            IssuerSigningKey = KeyingMaterial.DefaultSymmetricSigningCreds_256_Sha2.Key,
+                            ConfigurationManager = CreateConfigurationManager(false),
+                        },
+                    },
+                    new JwtTheoryData
+                    {
+                        TestId = "JWE_KeyWithKeyId_OnTokenDecryptFailure_KeysOnlyInTvp_ThrowsException",
+                        Token = new JsonWebTokenHandler().CreateToken(
+                            Default.PayloadString,
+                            KeyingMaterial.DefaultSymmetricSigningCreds_256_Sha2,
+                            KeyingMaterial.DefaultSymmetricEncryptingCreds_Aes128_Sha2),
+                        ValidationParameters = new TokenValidationParameters
+                        {
+                            ValidAudience = Default.Audience,
+                            ValidIssuer = Default.Issuer,
+                            ValidateIssuerSigningKey = true,
+                            IssuerSigningKey = KeyingMaterial.DefaultSymmetricSigningCreds_256_Sha2.Key,
+                            TokenDecryptionKey = KeyingMaterial.DefaultSymmetricSecurityKey_128,
+                            ConfigurationManager = new MockConfigurationManager<OpenIdConnectConfiguration>(new OpenIdConnectConfiguration()),
+                        },
+                        ExpectedException = ExpectedException.SecurityTokenDecryptionFailedException("IDX10603:")
+                    },
+                    new JwtTheoryData
+                    {
+                        TestId = "JWE_KeyWithoutKeyId_OnTokenDecryptFailure_KeysOnlyInTvp_ThrowsException",
+                        Token = new JsonWebTokenHandler().CreateToken(
+                            Default.PayloadString,
+                            KeyingMaterial.DefaultSymmetricSigningCreds_256_Sha2,
+                            KeyingMaterial.DefaultSymmetricEncryptingCreds_Aes128_Sha2),
+                        ValidationParameters = new TokenValidationParameters
+                        {
+                            ValidAudience = Default.Audience,
+                            ValidIssuer = Default.Issuer,
+                            ValidateIssuerSigningKey = true,
+                            IssuerSigningKey = KeyingMaterial.DefaultSymmetricSigningCreds_256_Sha2.Key,
+                            TokenDecryptionKey = new SymmetricSecurityKey(KeyingMaterial.DefaultSymmetricKeyBytes_128) { KeyId = null },
+                            ConfigurationManager = new MockConfigurationManager<OpenIdConnectConfiguration>(new OpenIdConnectConfiguration()),
+                        },
+                        ExpectedException = ExpectedException.SecurityTokenDecryptionFailedException("IDX10603:")
+                    },
                 };
+
+                static BaseConfigurationManager CreateConfigurationManager(bool invalidKeyHasKeyId)
+                {
+                    var configWrongDecryptKeys = new OpenIdConnectConfiguration();
+                    if (invalidKeyHasKeyId)
+                        configWrongDecryptKeys.TokenDecryptionKeys.Add(KeyingMaterial.DefaultSymmetricSecurityKey_128);
+                    else
+                        configWrongDecryptKeys.TokenDecryptionKeys.Add(new SymmetricSecurityKey(KeyingMaterial.DefaultSymmetricKeyBytes_128) { KeyId = null });
+
+                    var configWithDecryptKeys = new OpenIdConnectConfiguration();
+                    configWithDecryptKeys.TokenDecryptionKeys.Add(KeyingMaterial.DefaultSymmetricSecurityKey_256);
+
+                    var configManager = new MockConfigurationManager<OpenIdConnectConfiguration>(configWrongDecryptKeys);
+                    configManager.RefreshedConfiguration = configWithDecryptKeys;
+
+                    return configManager;
+                }
             }
         }
 
