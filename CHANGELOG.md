@@ -1,5 +1,12 @@
 See the [releases](https://github.com/AzureAD/azure-activedirectory-identitymodel-extensions-for-dotnet/releases) for details on bug fixes and added features.
 
+8.13.0
+====
+### Fundamentals
+- `CaseSensitiveClaimsIdentity.SecurityToken` setter is now protected internal (was internal). See PR [#3278](https://github.com/AzureAD/azure-activedirectory-identitymodel-extensions-for-dotnet/pull/3278) for details.
+- Update .NET SDK version to 9.0.108 used when building or running the code. See PR [#3274](https://github.com/AzureAD/azure-activedirectory-identitymodel-extensions-for-dotnet/pull/3274) for details.
+- Update RsaSecurityKey.cs to replace the Pkcs1 padding by Pss from HasPrivateKey check. See [#3280](https://github.com/AzureAD/azure-activedirectory-identitymodel-extensions-for-dotnet/pull/3280) for details.
+
 8.12.1
 ====
 ### Fundamentals
