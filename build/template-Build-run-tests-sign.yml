@@ -37,6 +37,12 @@ steps:
     version: 8.x
     installationPath: $(Agent.ToolsDirectory)/dotnet
 
+- task: UseDotNet@2
+  displayName: 'Use .Net Core SDK 9.x'
+  inputs:
+    version: 9.x
+    installationPath: $(Agent.ToolsDirectory)/dotnet
+
 - task: DotNetCoreCLI@2
   displayName: 'dotnet --list-sdks'
   inputs:
@@ -78,7 +84,7 @@ steps:
   inputs:
     targetType: filePath
     filePath: ./$(WilsonSourceDirectory)runTests.ps1
-    arguments: '-buildType $(BuildConfiguration) -runningInCI $True'
+    arguments: '-buildType $(BuildConfiguration) -runningInCI $True -dotnetDir "$(Agent.ToolsDirectory)/dotnet"'
   env:
     TargetNetNext: ${{ parameters.TargetNetNext }}
 
